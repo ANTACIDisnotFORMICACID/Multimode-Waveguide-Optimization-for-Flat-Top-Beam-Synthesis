@@ -1,0 +1,2 @@
+Status,PeakDirectionDifferenceDeg,HPBWRelativeDifference,PatternRmseDb,GatePassed,Message
+BLOCKED,NaN,NaN,NaN,0,"AEDT 2025 R2 launched, but its API returned no HFSS design object. The solver license was not verified; likely causes are license checkout failure or PyAEDT 0.9.6/AEDT 2025 R2 API incompatibility."

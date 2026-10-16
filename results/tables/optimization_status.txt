@@ -1,0 +1,3 @@
+PARETO_ONLY_NO_TARGET_PASSED
+SelectedHalfWidthDeg=20
+RobustnessPassed=1

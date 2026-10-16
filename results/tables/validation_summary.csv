@@ -1,0 +1,3 @@
+Plane,DirectFftPowerRmse,PeakDirectionDifferenceDeg,DirectFftGatePassed,AntennaToolboxStatus,AntennaToolboxRmseDb,AntennaToolboxPeakDifferenceDeg,Message
+E,4.1073481836314e-07,0,1,PASS,4.6226822417268,22.25,Antenna Toolbox open-ended waveguide solved successfully.
+H,1.22426605646132e-07,0,1,PASS,6.38714525588011,0.25,Antenna Toolbox open-ended waveguide solved successfully.

@@ -1,0 +1,13 @@
+{
+  "status": "BLOCKED",
+  "stage": "launch",
+  "aedt_version": "2025.2",
+  "pyaedt_version": "0.9.6",
+  "project": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\waveguide_30ghz_2025r2.aedt",
+  "repository_project": "D:\\homework\\电磁学小论文\\waveguide_farfield\\hfss\\projects\\waveguide_30ghz.aedt",
+  "solve_requested": true,
+  "license_verified": false,
+  "message": "AEDT 2025 R2 launched, but its API returned no HFSS design object. The solver license was not verified; likely causes are license checkout failure or PyAEDT 0.9.6/AEDT 2025 R2 API incompatibility.",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\homework\\电磁学小论文\\waveguide_farfield\\hfss\\build_and_solve.py\", line 193, in main\n    app = Hfss(\n        project=str(project_path),\n    ...<6 lines>...\n        remove_lock=True,\n    )\nTypeError: __init__() should return None, not 'bool'\n",
+  "elapsed_seconds": 15.241925239562988
+}

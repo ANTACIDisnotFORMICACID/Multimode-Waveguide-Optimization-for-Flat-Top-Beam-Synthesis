@@ -1,0 +1,7 @@
+hfss/.pyaedt/
+*.aedtresults/
+*.lock
+*.log
+__pycache__/
+*.pyc
+
