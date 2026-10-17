@@ -4,4 +4,5 @@ hfss/.pyaedt/
 *.log
 __pycache__/
 *.pyc
+.matlab-prefs/
 

@@ -33,10 +33,24 @@ def write_json(path: Path, payload: dict) -> None:
     path.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
 
 
-def far_field_cut(app, phi_deg: int) -> tuple[list[float], list[float]]:
+def read_selected_geometry(root: Path) -> dict[str, float]:
+    path = root / "results" / "tables" / "selected_geometry.csv"
+    if not path.is_file():
+        raise RuntimeError("selected_geometry.csv is missing; run the MATLAB geometry scan first")
+    with path.open(newline="", encoding="utf-8-sig") as stream:
+        row = next(csv.DictReader(stream))
+    return {
+        "aperture_width_mm": float(row["ApertureWidthMm"]),
+        "aperture_height_mm": float(row["ApertureHeightMm"]),
+        "flare_length_mm": float(row["FlareLengthMm"]),
+        "feed_straight_length_mm": 40.0,
+    }
+
+
+def far_field_complex_cut(app, phi_deg: int) -> tuple[list[float], list[complex], list[complex]]:
     variations = {"Freq": [FREQUENCY], "Theta": ["All"], "Phi": [f"{phi_deg}deg"]}
     data = app.post.get_solution_data(
-        expressions="dB(GainTotal)",
+        expressions=["rETheta", "rEPhi"],
         setup_sweep_name=f"{SETUP} : LastAdaptive",
         variations=variations,
         primary_sweep_variable="Theta",
@@ -46,17 +60,20 @@ def far_field_cut(app, phi_deg: int) -> tuple[list[float], list[float]]:
     if not data:
         raise RuntimeError(f"HFSS returned no far-field data for phi={phi_deg} deg")
     theta = [float(value) for value in data.primary_sweep_values]
-    gain = [float(value) for value in data.data_real("dB(GainTotal)")]
-    return theta, gain
+    e_theta = [complex(real, imag) for real, imag in zip(
+        data.data_real("rETheta"), data.data_imag("rETheta")
+    )]
+    e_phi = [complex(real, imag) for real, imag in zip(
+        data.data_real("rEPhi"), data.data_imag("rEPhi")
+    )]
+    return theta, e_theta, e_phi
 
 
-def signed_cut(app, positive_phi: int, negative_phi: int) -> tuple[list[float], list[float]]:
-    theta_pos, gain_pos = far_field_cut(app, positive_phi)
-    theta_neg, gain_neg = far_field_cut(app, negative_phi)
-    negative = [(-theta, gain) for theta, gain in zip(theta_neg, gain_neg) if theta > 0]
-    combined = sorted(negative + list(zip(theta_pos, gain_pos)), key=lambda item: item[0])
-    peak = max(value for _, value in combined)
-    return [item[0] for item in combined], [item[1] - peak for item in combined]
+def signed_complex_cut(app, positive_phi: int, negative_phi: int):
+    theta_pos, et_pos, ep_pos = far_field_complex_cut(app, positive_phi)
+    theta_neg, et_neg, ep_neg = far_field_complex_cut(app, negative_phi)
+    negative = [(-theta, et, ep) for theta, et, ep in zip(theta_neg, et_neg, ep_neg) if theta > 0]
+    return sorted(negative + list(zip(theta_pos, et_pos, ep_pos)), key=lambda item: item[0])
 
 
 def export_excitation_patterns(app, output_dir: Path) -> Path:
@@ -68,16 +85,21 @@ def export_excitation_patterns(app, output_dir: Path) -> Path:
         source_settings[source] = ("1W", "0deg")
         if not app.edit_sources(source_settings, include_port_post_processing=True):
             raise RuntimeError(f"Could not activate {source}")
-        for plane, positive_phi, negative_phi in (("E", 0, 180), ("H", 90, 270)):
-            theta, gain = signed_cut(app, positive_phi, negative_phi)
-            for angle, value in zip(theta, gain):
+        for plane, positive_phi, negative_phi in (("E", 90, 270), ("H", 0, 180)):
+            samples = signed_complex_cut(app, positive_phi, negative_phi)
+            for angle, e_theta, e_phi in samples:
                 rows.append(
                     {
                         "PortMode": mode_index,
                         "AnalyticMode": "UNIDENTIFIED",
                         "Plane": plane,
                         "ThetaDeg": angle,
-                        "GainDb": value,
+                        "EThetaReal": e_theta.real,
+                        "EThetaImag": e_theta.imag,
+                        "EPhiReal": e_phi.real,
+                        "EPhiImag": e_phi.imag,
+                        "ModeCorrelation": math.nan,
+                        "IdentificationStatus": "PENDING_PORT_FIELD_CORRELATION",
                     }
                 )
     path = output_dir / "hfss_port_mode_patterns.csv"
@@ -88,16 +110,45 @@ def export_excitation_patterns(app, output_dir: Path) -> Path:
     return path
 
 
-def build_model(app):
+def horn_sheet(app, points, name: str):
+    sheet = app.modeler.create_polyline(
+        points,
+        name=name,
+        cover_surface=True,
+        close_surface=True,
+    )
+    if not sheet:
+        raise RuntimeError(f"Could not create horn wall {name}")
+    return sheet
+
+
+def build_model(app, geometry: dict[str, float]):
     app.modeler.model_units = "mm"
-    walls = [
-        app.modeler.create_rectangle(app.PLANE.YZ, [-10, -5, -80], [10, 80], name="WallXMinus"),
-        app.modeler.create_rectangle(app.PLANE.YZ, [10, -5, -80], [10, 80], name="WallXPlus"),
-        app.modeler.create_rectangle(app.PLANE.XZ, [-10, -5, -80], [20, 80], name="WallYMinus"),
-        app.modeler.create_rectangle(app.PLANE.XZ, [-10, 5, -80], [20, 80], name="WallYPlus"),
+    aperture_width = geometry["aperture_width_mm"]
+    aperture_height = geometry["aperture_height_mm"]
+    flare_length = geometry["flare_length_mm"]
+    feed_length = geometry["feed_straight_length_mm"]
+    throat_z = -flare_length
+    port_z = throat_z - feed_length
+    straight_walls = [
+        app.modeler.create_rectangle(app.PLANE.YZ, [-10, -5, port_z], [10, feed_length], name="FeedXMinus"),
+        app.modeler.create_rectangle(app.PLANE.YZ, [10, -5, port_z], [10, feed_length], name="FeedXPlus"),
+        app.modeler.create_rectangle(app.PLANE.XZ, [-10, -5, port_z], [20, feed_length], name="FeedYMinus"),
+        app.modeler.create_rectangle(app.PLANE.XZ, [-10, 5, port_z], [20, feed_length], name="FeedYPlus"),
     ]
+    horn_walls = [
+        horn_sheet(app, [[-10, -5, throat_z], [-aperture_width / 2, -aperture_height / 2, 0],
+                         [-aperture_width / 2, aperture_height / 2, 0], [-10, 5, throat_z]], "HornXMinus"),
+        horn_sheet(app, [[10, -5, throat_z], [aperture_width / 2, -aperture_height / 2, 0],
+                         [aperture_width / 2, aperture_height / 2, 0], [10, 5, throat_z]], "HornXPlus"),
+        horn_sheet(app, [[-10, -5, throat_z], [10, -5, throat_z],
+                         [aperture_width / 2, -aperture_height / 2, 0], [-aperture_width / 2, -aperture_height / 2, 0]], "HornYMinus"),
+        horn_sheet(app, [[-10, 5, throat_z], [10, 5, throat_z],
+                         [aperture_width / 2, aperture_height / 2, 0], [-aperture_width / 2, aperture_height / 2, 0]], "HornYPlus"),
+    ]
+    walls = straight_walls + horn_walls
     port_sheet = app.modeler.create_rectangle(
-        app.PLANE.XY, [-10, -5, -80], [20, 10], name="WavePortSheet"
+        app.PLANE.XY, [-10, -5, port_z], [20, 10], name="WavePortSheet"
     )
     if not all(walls) or not port_sheet:
         raise RuntimeError("HFSS geometry creation failed")
@@ -107,7 +158,7 @@ def build_model(app):
     wave_port = app.wave_port(
         port_sheet,
         modes=PORT_MODES,
-        integration_line=[[-10, 0, -80], [10, 0, -80]],
+        integration_line=[[-10, 0, port_z], [10, 0, port_z]],
         name=PORT,
         renormalize=True,
     )
@@ -156,7 +207,10 @@ def main() -> int:
     repository_project_path = project_dir / "waveguide_30ghz.aedt"
     staging_dir = Path(os.environ.get("TEMP", str(project_dir))) / "waveguide_farfield_hfss"
     staging_dir.mkdir(parents=True, exist_ok=True)
-    project_path = staging_dir / "waveguide_30ghz_2025r2.aedt"
+    # Always start from a fresh project.  Re-opening a previous empty or
+    # partially written AEDT file can leave PyAEDT with a project handle but
+    # no design object, which is indistinguishable from a launch failure.
+    project_path = staging_dir / f"waveguide_30ghz_2025r2_{os.getpid()}.aedt"
     status = {
         "status": "BLOCKED",
         "stage": "preflight",
@@ -186,6 +240,8 @@ def main() -> int:
         # modal.  Request the intended modal network at insertion time.
         design_solutions.solutions_defaults["HFSS"] = "HFSS Modal Network"
 
+        geometry = read_selected_geometry(root)
+        status["geometry"] = geometry
         status["pyaedt_version"] = getattr(pyaedt, "__version__", "unknown")
         status["stage"] = "launch"
         status["message"] = "Launching AEDT and checking out an HFSS license."
@@ -202,11 +258,13 @@ def main() -> int:
         )
         status["license_verified"] = True
         status["stage"] = "model"
-        setup = build_model(app)
+        setup = build_model(app, geometry)
         app.save_project(str(project_path))
         shutil.copy2(project_path, repository_project_path)
         status["status"] = "MODEL_BUILT"
-        status["message"] = "Geometry, 10-mode wave port, PML, setup, and far-field sphere were created."
+        status["message"] = (
+            "Selected pyramidal horn, fixed 10-mode feed port, PML, setup, and far-field sphere were created."
+        )
         write_json(status_path, status)
         if not args.solve:
             return 0
@@ -226,8 +284,8 @@ def main() -> int:
         shutil.copy2(project_path, repository_project_path)
         status["status"] = "SOLVED_UNIDENTIFIED_MODES"
         status["message"] = (
-            "HFSS solved and exported all ten port-mode patterns. Analytical TE/TM labels "
-            "must be assigned by the MATLAB comparison before a multimode claim is made."
+            "HFSS solved and exported complex Etheta/Ephi for all ten feed-port modes. "
+            "Analytical TE/TM labels remain pending until port-field correlation exceeds 0.95."
         )
         return 0
     except Exception as exc:  # the status file is the durable failure report

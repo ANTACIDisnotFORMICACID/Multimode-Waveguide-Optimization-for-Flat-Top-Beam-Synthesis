@@ -22,6 +22,7 @@ end
 
 outputs.tests = run_tests();
 outputs.baseline = run_baseline(cfg);
+outputs.geometry = run_geometry_scan(cfg);
 outputs.optimization = run_optimization(cfg);
 
 if cfg.validation.runHfss

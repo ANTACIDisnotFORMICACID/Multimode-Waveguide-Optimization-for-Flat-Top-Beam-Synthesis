@@ -21,7 +21,13 @@ solution.history = history;
     function stop = recordHistory(optimValues, state)
         stop = false;
         if state == "iter"
-            history(end+1, :) = [optimValues.iteration, optimValues.bestfval]; %#ok<AGROW>
+            % particleswarm does not expose funccount consistently across
+            % MATLAB releases.  A complete swarm evaluation is performed
+            % at every iteration, so this is the comparable forward-model
+            % count used for all convergence plots.
+            evaluations = min((optimValues.iteration+1)*cfg.optimization.swarmSize, ...
+                cfg.optimization.maxFunctionEvaluations);
+            history(end+1, :) = [evaluations, optimValues.bestfval]; %#ok<AGROW>
         end
     end
 end

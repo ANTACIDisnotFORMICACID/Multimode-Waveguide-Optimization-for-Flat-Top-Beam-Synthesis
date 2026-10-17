@@ -1,3 +1,5 @@
 PARETO_ONLY_NO_TARGET_PASSED
 SelectedHalfWidthDeg=20
+TransitionDeg=20
+ActiveModes=5
 RobustnessPassed=1

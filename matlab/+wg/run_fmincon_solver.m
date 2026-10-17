@@ -19,7 +19,12 @@ solution.history = history;
     function stop = recordHistory(~, optimValues, state)
         stop = false;
         if state == "iter"
-            history(end+1, :) = [optimValues.iteration, optimValues.fval]; %#ok<AGROW>
+            if isfield(optimValues,'funccount')
+                evaluations = optimValues.funccount;
+            else
+                evaluations = optimValues.iteration+1;
+            end
+            history(end+1, :) = [evaluations, optimValues.fval]; %#ok<AGROW>
         end
     end
 end

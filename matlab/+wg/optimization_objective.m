@@ -22,7 +22,10 @@ sideError = mean(result.power(sideMask, :).^2, 'all');
 crossPower = abs(result.cross).^2/max(max(abs(result.co(:)).^2), eps);
 crossError = mean(crossPower(mainMask, :), 'all');
 
-objective = 4*mainError + 2*transitionError + 4*sideError + 2*crossError;
+% The sidelobe term is intentionally stronger than a pure least-squares
+% fit because the paper-level gate is defined by the worst outside level.
+% Hard peak metrics remain independent acceptance tests in solution_metrics.
+objective = 4*mainError + 2*transitionError + 12*sideError + 10*crossError;
 if nargout > 1
     detail.MainError = mainError;
     detail.TransitionError = transitionError;

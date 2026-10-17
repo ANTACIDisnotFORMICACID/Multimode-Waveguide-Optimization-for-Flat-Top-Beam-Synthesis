@@ -1,0 +1,2 @@
+HalfWidthDeg,TransitionDeg,BaselineWorstRippleDb,ShapedWorstRippleDb,RippleReductionPercent,BaselineHPlaneHpbwDeg,ShapedHPlaneHpbwDeg,HPlaneHpbwIncreasePercent,ShapedOutsideTransitionDb,ActiveModeCount,HardTargetStatus
+20,20,4.59444627111777,0.858052600093109,81.3241346299528,32.4677952020495,50.4444142738383,55.3675386946324,-9.54227461208949,5,PARETO_ONLY_NO_TARGET_PASSED

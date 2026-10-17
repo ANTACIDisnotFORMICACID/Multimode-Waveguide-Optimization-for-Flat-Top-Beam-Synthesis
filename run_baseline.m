@@ -9,43 +9,72 @@ catalog = wg.enumerate_modes(cfg);
 writetable(catalog, fullfile(paths.tables, 'mode_catalog.csv'));
 modes = wg.propagating_modes(catalog);
 
-fig = figure('Visible','off','Color','w','Position',[100 100 1500 650]);
+fig = figure('Visible','off','Color','w','Position',[100 100 1450 700]);
+shown = catalog(catalog.CutoffGHz <= cfg.frequencyHz/1e9*1.25,:);
+shown = sortrows(shown,{'CutoffGHz','Family','m','n'});
+x = (1:height(shown)).';
 hold on;
-colors = lines(3);
+patch([0.5;height(shown)+0.5;height(shown)+0.5;0.5], ...
+    [0;0;cfg.frequencyHz/1e9;cfg.frequencyHz/1e9], [0.91 0.97 0.94], ...
+    'EdgeColor','none','HandleVisibility','off');
+colors = [0.08 0.45 0.74; 0.91 0.38 0.12];
 families = ["TE","TM"];
 markers = {'o','s'};
 for familyIdx = 1:numel(families)
-    mask = catalog.Family == families(familyIdx) & catalog.CutoffGHz <= cfg.frequencyHz/1e9*1.25;
-    scatter(categorical(catalog.Name(mask)), catalog.CutoffGHz(mask), 65, ...
-        colors(familyIdx,:), markers{familyIdx}, 'filled', 'DisplayName', families(familyIdx));
+    mask = shown.Family == families(familyIdx);
+    scatter(x(mask), shown.CutoffGHz(mask), 75, colors(familyIdx,:), ...
+        markers{familyIdx}, 'filled', 'DisplayName', families(familyIdx));
 end
-yline(cfg.frequencyHz/1e9, 'k--', '30 GHz operating frequency', 'LineWidth', 1.5);
+cutoffMask = abs(shown.CutoffGHz-cfg.frequencyHz/1e9) <= cfg.cutoffToleranceHz/1e9;
+scatter(x(cutoffMask),shown.CutoffGHz(cutoffMask),130,'d', ...
+    'MarkerEdgeColor',[0.1 0.1 0.1],'LineWidth',1.6, ...
+    'DisplayName','At cutoff');
+yline(cfg.frequencyHz/1e9, '--', '30 GHz', 'Color',[0.15 0.15 0.15], ...
+    'LineWidth',1.5,'LabelHorizontalAlignment','right','HandleVisibility','off');
+xlim([0.5 height(shown)+0.5]); ylim([0 40]);
+ax = gca; ax.XTick = x; ax.XTickLabel = cellstr(shown.Name); ax.XTickLabelRotation = 35;
 ylabel('Cutoff frequency (GHz)');
-title('Rectangular-waveguide TE/TM mode catalog');
-grid on; legend('Location','northwest');
-wg.style_figure(fig);
-exportgraphics(fig, fullfile(paths.figures, '01_mode_cutoff_catalog.png'), 'Resolution', 200);
+title('Mode availability at 30 GHz');
+subtitle(sprintf('20 mm x 10 mm rectangular waveguide | %d propagating modes | 2 modes at cutoff',height(modes)));
+grid on; legend('Location','northwest','NumColumns',3);
+text(0.8,2.1,'PROPAGATING REGION','Color',[0.07 0.42 0.23], ...
+    'FontWeight','bold','FontSize',11);
+wg.export_paper_figure(fig,fullfile(paths.figures,'02_mode_cutoff_catalog'));
 close(fig);
 
-representatives = ["TE10","TE11","TM11"];
-fig = figure('Visible','off','Color','w','Position',[100 100 1700 1100]);
-tiledlayout(numel(representatives), 4, 'TileSpacing','compact','Padding','compact');
-for row = 1:numel(representatives)
-    hit = find(modes.Name == representatives(row), 1);
-    assert(~isempty(hit), 'Required representative mode is not propagating: %s', representatives(row));
+representatives = ["TE10","TE20","TE30"; ...
+    "TE11","TE21","TE31"; ...
+    "TM11","TM21","TM31"];
+fig = figure('Visible','off','Color','w','Position',[100 80 1500 850]);
+tiledlayout(3,3,'TileSpacing','compact','Padding','compact');
+for panel = 1:numel(representatives)
+    row = ceil(panel/3);
+    col = mod(panel-1,3)+1;
+    modeName = representatives(row,col);
+    hit = find(modes.Name == modeName, 1);
+    assert(~isempty(hit), 'Required representative mode is not propagating: %s', modeName);
     field = wg.mode_fields(cfg, modes.Family(hit), modes.m(hit), modes.n(hit));
-    quantities = {abs(field.Ex), angle(field.Ex), abs(field.Ey), angle(field.Ey)};
-    labels = {'|E_x|','phase(E_x)','|E_y|','phase(E_y)'};
-    for col = 1:4
-        nexttile;
-        imagesc(field.x*1e3, field.y*1e3, quantities{col});
-        axis xy equal tight; colorbar;
-        xlabel('x (mm)'); ylabel('y (mm)');
-        title(sprintf('%s %s', representatives(row), labels{col}));
-    end
+    magnitude = sqrt(abs(field.Ex).^2+abs(field.Ey).^2);
+    [~,peakIndex] = max(magnitude(:));
+    reference = field.Ex(peakIndex);
+    if abs(field.Ey(peakIndex)) > abs(reference), reference = field.Ey(peakIndex); end
+    rotation = exp(-1j*angle(reference));
+    ex = real(field.Ex*rotation)/max(magnitude(:));
+    ey = real(field.Ey*rotation)/max(magnitude(:));
+    nexttile; hold on;
+    imagesc(field.x*1e3,field.y*1e3,magnitude/max(magnitude(:)));
+    axis xy equal tight; clim([0 1]); colormap(parula);
+    rowStep = 8; colStep = 12;
+    quiver(field.X(1:rowStep:end,1:colStep:end)*1e3, ...
+        field.Y(1:rowStep:end,1:colStep:end)*1e3, ...
+        ex(1:rowStep:end,1:colStep:end),ey(1:rowStep:end,1:colStep:end), ...
+        0.52,'w','LineWidth',0.75,'MaxHeadSize',0.75);
+    if row == 3, xlabel('x (mm)'); end
+    if col == 1, ylabel('y (mm)'); end
+    title(sprintf('%s   f_c = %.2f GHz',modeName,modes.CutoffGHz(hit)));
 end
-wg.style_figure(fig);
-exportgraphics(fig, fullfile(paths.figures, '02_representative_aperture_fields.png'), 'Resolution', 200);
+cb = colorbar; cb.Layout.Tile = 'east'; cb.Label.String = 'Normalized |E_t|';
+wg.export_paper_figure(fig,fullfile(paths.figures,'03_mode_field_atlas'));
 close(fig);
 
 patternRows = table();
@@ -65,24 +94,6 @@ for modeIdx = 1:height(modes)
     end
 end
 writetable(patternRows, fullfile(paths.tables, 'patterns.csv'));
-
-fig = figure('Visible','off','Color','w','Position',[100 100 1600 1050]);
-tiledlayout(2, 2, 'TileSpacing','compact','Padding','compact');
-mapModes = ["TE10","TE11","TM11","TE31"];
-[phiGrid, thetaGrid] = meshgrid(cfg.angles.mapPhiDeg, cfg.angles.mapThetaDeg);
-for idx = 1:numel(mapModes)
-    hit = find(modes.Name == mapModes(idx), 1);
-    field = wg.mode_fields(cfg, modes.Family(hit), modes.m(hit), modes.n(hit));
-    pattern = wg.farfield_fft(cfg, field, thetaGrid, phiGrid);
-    db = 10*log10(max(pattern.power/max(pattern.power(:)+eps), 1e-4));
-    nexttile;
-    imagesc(cfg.angles.mapPhiDeg, cfg.angles.mapThetaDeg, db);
-    axis xy; clim([-40 0]); colorbar; colormap turbo;
-    xlabel('\phi (deg)'); ylabel('\theta (deg)'); title(mapModes(idx) + " total pattern (dB)");
-end
-wg.style_figure(fig);
-exportgraphics(fig, fullfile(paths.figures, '03_representative_theta_phi_patterns.png'), 'Resolution', 200);
-close(fig);
 
 outputs.catalog = catalog;
 outputs.propagatingModes = modes;

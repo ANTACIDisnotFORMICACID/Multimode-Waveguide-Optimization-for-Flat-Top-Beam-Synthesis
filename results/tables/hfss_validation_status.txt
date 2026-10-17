@@ -1,2 +1,2 @@
-BLOCKED
-AEDT 2025 R2 launched, but its API returned no HFSS design object. The solver license was not verified; likely causes are license checkout failure or PyAEDT 0.9.6/AEDT 2025 R2 API incompatibility.
+BLOCKED_NOT_RUN
+No HFSS status or pattern export was found.

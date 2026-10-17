@@ -89,5 +89,63 @@ classdef TestWaveguideCore < matlab.unittest.TestCase
                 testCase.verifyLessThan(ratio,1e-10);
             end
         end
+
+        function hornMappingDegeneratesToStraightGuide(testCase)
+            cfg = testCase.Config;
+            geometry = struct('apertureWidthM',cfg.widthM, ...
+                'apertureHeightM',cfg.heightM,'flareLengthM',80e-3);
+            straight = wg.mode_fields(cfg,"TE",1,0);
+            mapped = wg.horn_aperture_fields(cfg,"TE",1,0,geometry);
+            testCase.verifyEqual(mapped.x,straight.x,'AbsTol',1e-14);
+            testCase.verifyEqual(mapped.y,straight.y,'AbsTol',1e-14);
+            testCase.verifyEqual(mapped.Ex,straight.Ex,'AbsTol',1e-12);
+            testCase.verifyEqual(mapped.Ey,straight.Ey,'AbsTol',1e-12);
+        end
+
+        function hornModesRemainUnitPower(testCase)
+            cfg = testCase.Config;
+            geometry = struct('apertureWidthM',60e-3, ...
+                'apertureHeightM',40e-3,'flareLengthM',100e-3);
+            for definition = {"TE",1,0;"TE",1,1;"TM",1,1}.'
+                field = wg.horn_aperture_fields(cfg,definition{1},definition{2},definition{3},geometry);
+                testCase.verifyLessThan(abs(field.powerW-1),1e-10);
+            end
+        end
+
+        function geometryConfigurationHasNineWidthPoints(testCase)
+            cfg = testCase.Config;
+            testCase.verifyEqual(cfg.optimization.halfWidthsDeg,5:2.5:25);
+            testCase.verifyEqual(numel(cfg.optimization.halfWidthsDeg),9);
+            testCase.verifyEqual(cfg.optimization.maxActiveModes,6);
+        end
+
+        function hornHalfAnglesMatchAnalyticGeometry(testCase)
+            cfg = testCase.Config;
+            geometry = struct('apertureWidthM',60e-3, ...
+                'apertureHeightM',40e-3,'flareLengthM',100e-3);
+            [angleX,angleY] = wg.horn_half_angles(cfg,geometry);
+            testCase.verifyEqual(angleX,rad2deg(atan(0.04/0.2)),'AbsTol',1e-12);
+            testCase.verifyEqual(angleY,rad2deg(atan(0.03/0.2)),'AbsTol',1e-12);
+        end
+
+        function pruningHonorsActiveModeLimit(testCase)
+            cfg = testCase.Config;
+            cfg.optimization.maxFunctionEvaluations = 120;
+            modes = wg.propagating_modes(wg.enumerate_modes(cfg));
+            basis = wg.build_pattern_basis(cfg,modes,(-30:2:30).',[90 0]);
+            initial = wg.normalize_weights(ones(height(modes),1));
+            result = wg.prune_and_refine(cfg,basis,initial,20,10,6);
+            testCase.verifyLessThanOrEqual(nnz(abs(result.weights)>=1e-3),6);
+            testCase.verifyEqual(angle(result.weights(1)),0,'AbsTol',1e-10);
+        end
+
+        function psoHistoryUsesMonotonicEvaluationCounts(testCase)
+            cfg = testCase.Config;
+            cfg.optimization.swarmSize = 10;
+            cfg.optimization.maxIterations = 3;
+            solution = wg.run_pso_solver(@(x)sum(x.^2),-ones(3,1),ones(3,1),cfg,0);
+            testCase.verifyGreaterThanOrEqual(min(diff(solution.history(:,1))),0);
+            testCase.verifyGreaterThanOrEqual(min(-diff(solution.history(:,2))),-1e-12);
+        end
     end
 end
