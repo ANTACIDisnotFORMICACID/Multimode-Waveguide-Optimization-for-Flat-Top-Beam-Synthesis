@@ -171,6 +171,42 @@ $$
 
 这一矢量变换使 E/H 两个主切面的功率、共极化和交叉极化能够在同一模型中评价。
 
+### 2.4 模式阶数、空间奇偶性与远场零点
+
+模式下标不仅决定截止频率，也决定口径场中包含多少个空间节点。令平移坐标 $\xi=x+a/2\in[0,a]$。对 TE$_{m0}$ 模式，横向电场只有 $y$ 分量，其空间形式为
+
+$$
+E_y(\xi)\propto \sin\left(\frac{m\pi\xi}{a}\right).
+$$
+
+正前方辐射对应 $k_x=k_y=0$，因此其复场与口径场的面积积分成正比：
+
+$$
+F_{y,m}(0,0)\propto
+b\int_0^a\sin\left(\frac{m\pi\xi}{a}\right)\,\mathrm d\xi
+=\frac{ab}{m\pi}\left[1-(-1)^m\right].
+$$
+
+当 $m$ 为偶数时，口径左右区域的正负贡献相互抵消，正前方形成零点；当 $m$ 为奇数时，面积积分非零。离开正前方后，相位因子 $e^{\mathrm jk_xx}$ 改变不同口径区域之间的相对相位，原先的相消可以转为相长，因此偶数阶模式在轴外产生对称峰值。随着阶数增加，口径场包含更高的空间频率，远场中相应出现更多零点和轴外瓣。
+
+![TE_m0 模式的口径奇偶性与远场切面](results/figures/S1_mode_parity_and_farfield.png)
+
+*图 S1　TE10、TE20、TE30 在馈入口中心线上的有符号 $E_y$ 分布及其 H 面总功率方向图。TE20 的两半口径反相，使正前方成为零点；图中只包含30 GHz下严格传播的模式。[矢量 PDF](results/figures/S1_mode_parity_and_farfield.pdf)*
+
+当 $m,n$ 同时非零时，$E_x$ 与 $E_y$ 通常同时存在，两个横向方向的正弦、余弦因子共同决定二维空间谱。图 S2 对全部10个传播模式使用相同的1 W功率归一化和 $-40\sim0$ dB显示范围。TE$_{m0}$ 的角域结构主要随 $\theta$ 在 H 面附近变化；TE$_{m1}$ 和 TM$_{m1}$ 同时包含两个方向的节点，并表现出明显不同的方位对称性。临近截止的 TE31 和 TM31 具有更小的传播常数，其场结构和模态阻抗也更容易受到尺寸与激励误差影响。
+
+![30 GHz传播模式的二维远场图谱](results/figures/S2_propagating_mode_farfield_atlas.png)
+
+*图 S2　20 mm × 10 mm馈入口在30 GHz下全部10个传播模式的可见半球总功率方向图。每个模式独立归一化到自身峰值以比较角域形状，颜色不能用于比较不同模式的绝对增益。[矢量 PDF](results/figures/S2_propagating_mode_farfield_atlas.pdf)*
+
+Maxwell方程和远场变换都是线性的。若第 $q$ 个模式的远场复矢量为 $\mathbf F_q$，多模组合满足
+
+$$
+\mathbf F(\theta,\phi)=\sum_q w_q\mathbf F_q(\theta,\phi),
+$$
+
+而功率 $|\mathbf F|^2$ 中还包含不同模式之间的交叉项。优化算法调节的正是这些交叉项：同相分量在需要补偿的角域增强，反相分量在中心或远角区域抵消。由此，多模权重不只是拟合参数，而是控制口径空间频谱的物理自由度。更完整的本征场、奇偶性和矢量远场推导见 [多模矩形波导物理分析](docs/mode_physics.md)。
+
 ## 3. 计算模型与优化方法
 
 ### 3.1 研究设定
@@ -481,6 +517,7 @@ run_validation();
 | **results/data/** | 完整 MATLAB 结果结构 |
 | **results/figures/** | 300 dpi PNG 与矢量 PDF |
 | [docs/theory.md](docs/theory.md) | 理论公式的紧凑说明 |
+| [docs/mode_physics.md](docs/mode_physics.md) | 模式本征问题、奇偶性、远场零点与多模干涉的详细推导 |
 | [docs/validation.md](docs/validation.md) | 数值检查与全波设置记录 |
 
 主要数据文件：
@@ -488,6 +525,7 @@ run_validation();
 - **mode_catalog.csv**：模式名称、截止频率、传播常数和模态阻抗；
 - **geometry_scan.csv**：开口尺寸、渐变长度、过渡宽度和方向图指标；
 - **patterns.csv**：各传播模式的 E/H 面方向图；
+- **mode_family_cuts.csv**：TE10、TE20、TE30 的 H 面方向图及奇偶性对照数据；
 - **modal_weights.csv**：不同目标宽度下的模态复权重；
 - **optimization_runs.csv**：算法、目标宽度、随机种子、计算量和最终指标；
 - **convergence_history.csv**：按累计前向计算次数记录的历史最优值；

@@ -95,8 +95,11 @@ for modeIdx = 1:height(modes)
 end
 writetable(patternRows, fullfile(paths.tables, 'patterns.csv'));
 
+modePhysics = wg.make_mode_physics_figures(cfg,modes,paths);
+
 outputs.catalog = catalog;
 outputs.propagatingModes = modes;
+outputs.modePhysics = modePhysics;
 outputs.paths = paths;
 end
 

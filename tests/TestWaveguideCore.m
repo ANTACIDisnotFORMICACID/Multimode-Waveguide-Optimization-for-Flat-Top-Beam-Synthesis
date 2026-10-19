@@ -90,6 +90,19 @@ classdef TestWaveguideCore < matlab.unittest.TestCase
             end
         end
 
+        function teM0BroadsideParityMatchesApertureIntegral(testCase)
+            cfg = testCase.Config;
+            broadsidePower = zeros(3,1);
+            for m = 1:3
+                field = wg.mode_fields(cfg,"TE",m,0);
+                pattern = wg.farfield_direct(cfg,field,0,0);
+                broadsidePower(m) = pattern.power;
+            end
+            testCase.verifyGreaterThan(broadsidePower(1),0);
+            testCase.verifyGreaterThan(broadsidePower(3),0);
+            testCase.verifyLessThan(broadsidePower(2)/max(broadsidePower([1 3])),1e-12);
+        end
+
         function hornMappingDegeneratesToStraightGuide(testCase)
             cfg = testCase.Config;
             geometry = struct('apertureWidthM',cfg.widthM, ...
