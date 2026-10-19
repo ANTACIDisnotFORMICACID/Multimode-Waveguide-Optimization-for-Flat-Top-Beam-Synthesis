@@ -89,8 +89,6 @@ wg.export_paper_figure(fig,fullfile(paths.figures,'01_model_geometry')); close(f
 % constraint, so each A/B cell is represented by its lowest-objective row.
 widths = unique(rows.ApertureWidthMm);
 heights = unique(rows.ApertureHeightMm);
-rippleMatrix = nan(numel(heights),numel(widths));
-outsideMatrix = nan(numel(heights),numel(widths));
 bestRows = table();
 for rowIdx = 1:numel(heights)
     for colIdx = 1:numel(widths)
@@ -101,47 +99,59 @@ for rowIdx = 1:numel(heights)
         if isempty(candidates), continue; end
         [~,bestIndex] = min(candidates.Objective);
         chosen = candidates(bestIndex,:);
-        rippleMatrix(rowIdx,colIdx) = chosen.MainRippleDb;
-        outsideMatrix(rowIdx,colIdx) = chosen.MaxOutsideDb;
         bestRows = [bestRows;chosen]; %#ok<AGROW>
     end
 end
 
-fig = figure('Visible','off','Color','w','Position',[40 100 1750 610]);
-layout = tiledlayout(1,3,'TileSpacing','compact','Padding','compact');
-ax1 = nexttile; hold on;
-image1 = imagesc(widths,heights,rippleMatrix); axis xy;
-image1.AlphaData = isfinite(rippleMatrix); colormap(ax1,parula);
-scatter(selectedRow.ApertureWidthMm,selectedRow.ApertureHeightMm,120,'p', ...
-    'MarkerFaceColor',[0.88 0.24 0.12],'MarkerEdgeColor','k','LineWidth',1.1);
-cb1 = colorbar; cb1.Label.String = 'Ripple (dB)';
-xlabel('Aperture width A (mm)'); ylabel('Aperture height B (mm)');
-title('(a) Main-region ripple'); grid on;
+% The scan is discrete and independently optimized at every A/B pair.
+% Plotting interpolated heat maps would imply smooth information that was
+% never sampled.  Instead, show the two design-space cuts that intersect at
+% the selected aperture; the complete 5-by-5 grid remains in the CSV file.
+heightSlice = sortrows(bestRows(bestRows.ApertureWidthMm == A,:), ...
+    'ApertureHeightMm');
+widthSlice = sortrows(bestRows(bestRows.ApertureHeightMm == B,:), ...
+    'ApertureWidthMm');
 
-ax2 = nexttile; hold on;
-image2 = imagesc(widths,heights,outsideMatrix); axis xy;
-image2.AlphaData = isfinite(outsideMatrix); colormap(ax2,parula);
-scatter(selectedRow.ApertureWidthMm,selectedRow.ApertureHeightMm,120,'p', ...
-    'MarkerFaceColor',[0.88 0.24 0.12],'MarkerEdgeColor','k','LineWidth',1.1);
-cb2 = colorbar; cb2.Label.String = 'Maximum outside level (dB)';
-xlabel('Aperture width A (mm)'); ylabel('Aperture height B (mm)');
-title('(b) Outside-region radiation'); grid on;
+fig = figure('Visible','off','Color','w','Position',[50 60 1500 900]);
+layout = tiledlayout(2,2,'TileSpacing','compact','Padding','compact');
+selectedColor = [0.88 0.24 0.12];
+rippleColor = [0.05 0.35 0.70];
+outsideColor = [0.90 0.48 0.08];
 
 nexttile; hold on;
-areas = bestRows.ApertureWidthMm.*bestRows.ApertureHeightMm;
-scatter(bestRows.MainRippleDb,bestRows.MaxOutsideDb,55,areas,'filled', ...
-    'MarkerFaceAlpha',0.78,'MarkerEdgeColor',[0.25 0.25 0.25]);
-scatter(selectedRow.MainRippleDb,selectedRow.MaxOutsideDb,170,'p', ...
-    'MarkerFaceColor',[0.88 0.24 0.12],'MarkerEdgeColor','k','LineWidth',1.2);
-text(selectedRow.MainRippleDb,selectedRow.MaxOutsideDb, ...
-    sprintf('  %.0f x %.0f mm',A,B),'FontWeight','bold', ...
-    'VerticalAlignment','bottom');
-cb3 = colorbar; cb3.Label.String = 'Aperture area (mm^2)';
-xlabel('Main-region ripple (dB)');
-ylabel('Maximum outside level (dB)');
-title('(c) Flatness--suppression trade-off'); grid on;
-heading = title(layout,sprintf('Aperture-size scan for the 20^o flat-top target (%.0f^o transition)', ...
-    selectedRow.TransitionDeg));
+plot(heightSlice.ApertureHeightMm,heightSlice.MainRippleDb,'o-', ...
+    'Color',rippleColor,'MarkerFaceColor',rippleColor,'LineWidth',1.8);
+scatter(B,selectedRow.MainRippleDb,125,'p','MarkerFaceColor',selectedColor, ...
+    'MarkerEdgeColor','k','LineWidth',1.0);
+xlabel('Aperture height B (mm)'); ylabel('Main-region ripple (dB)');
+title(sprintf('(a) Height sweep at A = %.0f mm',A)); ylim([0 60]); grid on;
+
+nexttile; hold on;
+plot(heightSlice.ApertureHeightMm,heightSlice.MaxOutsideDb,'s-', ...
+    'Color',outsideColor,'MarkerFaceColor',outsideColor,'LineWidth',1.8);
+scatter(B,selectedRow.MaxOutsideDb,125,'p','MarkerFaceColor',selectedColor, ...
+    'MarkerEdgeColor','k','LineWidth',1.0);
+xlabel('Aperture height B (mm)'); ylabel('Maximum outside level (dB)');
+title(sprintf('(b) Height sweep at A = %.0f mm',A)); ylim([-24 -8]); grid on;
+
+nexttile; hold on;
+plot(widthSlice.ApertureWidthMm,widthSlice.MainRippleDb,'o-', ...
+    'Color',rippleColor,'MarkerFaceColor',rippleColor,'LineWidth',1.8);
+scatter(A,selectedRow.MainRippleDb,125,'p','MarkerFaceColor',selectedColor, ...
+    'MarkerEdgeColor','k','LineWidth',1.0);
+xlabel('Aperture width A (mm)'); ylabel('Main-region ripple (dB)');
+title(sprintf('(c) Width sweep at B = %.0f mm',B)); ylim([0 60]); grid on;
+
+nexttile; hold on;
+plot(widthSlice.ApertureWidthMm,widthSlice.MaxOutsideDb,'s-', ...
+    'Color',outsideColor,'MarkerFaceColor',outsideColor,'LineWidth',1.8);
+scatter(A,selectedRow.MaxOutsideDb,125,'p','MarkerFaceColor',selectedColor, ...
+    'MarkerEdgeColor','k','LineWidth',1.0);
+xlabel('Aperture width A (mm)'); ylabel('Maximum outside level (dB)');
+title(sprintf('(d) Width sweep at B = %.0f mm',B)); ylim([-24 -8]); grid on;
+
+heading = title(layout,sprintf(['Discrete aperture sensitivity around the selected design ' ...
+    '(20^o half-width, %.0f^o transition)'],selectedRow.TransitionDeg));
 heading.Color = 'k';
 wg.export_paper_figure(fig,fullfile(paths.figures,'05_geometry_tradeoff')); close(fig);
 end

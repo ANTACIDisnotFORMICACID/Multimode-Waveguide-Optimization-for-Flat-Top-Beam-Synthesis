@@ -102,34 +102,6 @@ wg.export_paper_figure(fig,fullfile(paths.figures,'09_width_sweep')); close(fig)
 
 weights = selected.weights;
 active = abs(weights) >= 1e-3;
-activeNames = string(modes.Name(active));
-activeWeights = weights(active);
-signedWeights = abs(activeWeights).*sign(cos(angle(activeWeights)));
-fig = figure('Visible','off','Color','w','Position',[100 100 1450 610]);
-tiledlayout(1,2,'TileSpacing','compact','Padding','compact');
-nexttile; hold on;
-bars = barh(1:numel(activeNames),signedWeights,'FaceColor','flat');
-barColors = repmat([0.08 0.38 0.68],numel(activeNames),1);
-barColors(signedWeights < 0,:) = repmat([0.88 0.25 0.10],nnz(signedWeights < 0),1);
-bars.CData = barColors;
-xline(0,'k-','LineWidth',0.9);
-for modeIdx = 1:numel(activeNames)
-    value = signedWeights(modeIdx);
-    if value >= 0
-        horizontalAlignment = 'left';
-        offset = 0.02;
-    else
-        horizontalAlignment = 'right';
-        offset = -0.02;
-    end
-    text(value+offset,modeIdx,sprintf('%.1f^o',rad2deg(angle(activeWeights(modeIdx)))), ...
-        'HorizontalAlignment',horizontalAlignment,'VerticalAlignment','middle');
-end
-xlim([-0.72 0.72]); grid on;
-yticks(1:numel(activeNames)); yticklabels(activeNames); ylim([0.4 numel(activeNames)+0.6]);
-xlabel('Signed normalized coefficient');
-title('(a) Modal amplitude and relative phase');
-
 combinedEx = [];
 combinedEy = [];
 for modeIdx = find(active).'
@@ -153,6 +125,57 @@ if abs(combinedEy(peakIndex)) > abs(reference), reference = combinedEy(peakIndex
 rotation = exp(-1j*angle(reference));
 ex = real(combinedEx*rotation)/max(magnitude(:));
 ey = real(combinedEy*rotation)/max(magnitude(:));
+
+optimizedField = field;
+optimizedField.Ex = combinedEx;
+optimizedField.Ey = combinedEy;
+if isempty(basis.geometry)
+    baselineField = wg.mode_fields(cfg,"TE",1,0);
+else
+    baselineField = wg.horn_aperture_fields(cfg,"TE",1,0,basis.geometry);
+end
+
+% Relate the synthesized aperture field to its two-dimensional angular
+% spectrum. Direction cosines u and v are the normalized transverse
+% spatial frequencies sampled by the aperture Fourier transform.
+uvAxis = linspace(-0.80,0.80,181);
+[uGrid,vGrid] = meshgrid(uvAxis,uvAxis);
+rho = hypot(uGrid,vGrid);
+visible = rho <= 1;
+thetaMap = asind(min(rho,1));
+phiMap = atan2d(vGrid,uGrid);
+thetaMap(~visible) = 0;
+phiMap(~visible) = 0;
+optimizedMap = wg.farfield_fft(cfg,optimizedField,thetaMap,phiMap);
+baselineMap = wg.farfield_fft(cfg,baselineField,thetaMap,phiMap);
+optimizedNormalized = optimizedMap.power/max(optimizedMap.power(visible));
+baselineNormalized = baselineMap.power/max(baselineMap.power(visible));
+optimizedDb = 10*log10(max(optimizedNormalized,1e-3));
+optimizedDb(~visible) = nan;
+
+optimizedCoherence = apertureCoherence(optimizedField,combinedEx,combinedEy);
+baselineCoherence = apertureCoherence(baselineField,baselineField.Ex,baselineField.Ey);
+du = mean(diff(uvAxis));
+optimizedHalfPowerArea = nnz(optimizedNormalized >= 0.5 & visible)*du^2;
+baselineHalfPowerArea = nnz(baselineNormalized >= 0.5 & visible)*du^2;
+edgeTheta = halfWidth*ones(4,1);
+edgePhi = [0;90;180;-90];
+optimizedEdge = wg.farfield_fft(cfg,optimizedField,edgeTheta,edgePhi);
+baselineEdge = wg.farfield_fft(cfg,baselineField,edgeTheta,edgePhi);
+optimizedEdgeDb = 10*log10(mean(optimizedEdge.power)/max(optimizedMap.power(visible)));
+baselineEdgeDb = 10*log10(mean(baselineEdge.power)/max(baselineMap.power(visible)));
+
+design = ["TE10 on selected aperture";"Five-mode synthesis"];
+coherenceFactor = [baselineCoherence;optimizedCoherence];
+halfPowerAreaUV = [baselineHalfPowerArea;optimizedHalfPowerArea];
+meanTargetEdgeDb = [baselineEdgeDb;optimizedEdgeDb];
+spectrumSummary = table(design,coherenceFactor,halfPowerAreaUV,meanTargetEdgeDb, ...
+    'VariableNames',{'Design','ApertureCoherenceFactor','HalfPowerAreaUV', ...
+    'MeanPowerAtTargetEdgeDb'});
+writetable(spectrumSummary,fullfile(paths.tables,'aperture_spectrum_summary.csv'));
+
+fig = figure('Visible','off','Color','w','Position',[100 100 1500 630]);
+tiledlayout(1,2,'TileSpacing','compact','Padding','compact');
 nexttile; hold on;
 imagesc(field.x*1e3,field.y*1e3,magnitude/max(magnitude(:)));
 axis xy equal tight; clim([0 1]); colormap(parula);
@@ -162,7 +185,37 @@ quiver(field.X(1:rowStep:end,1:colStep:end)*1e3, ...
     ex(1:rowStep:end,1:colStep:end),ey(1:rowStep:end,1:colStep:end), ...
     0.52,'w','LineWidth',0.8,'MaxHeadSize',0.75);
 xlabel('x (mm)'); ylabel('y (mm)');
-title('(b) Synthesized transverse aperture field');
+title('(a) Synthesized transverse aperture field');
 cb = colorbar; cb.Label.String = 'Normalized |E_t|';
+
+nexttile; hold on;
+imagesc(uvAxis,uvAxis,optimizedDb);
+axis xy equal tight; clim([-30 0]);
+[~,optimizedContour] = contour(uGrid,vGrid,optimizedDb,[-3 -3],'w-', ...
+    'LineWidth',2.0);
+baselineDb = 10*log10(max(baselineNormalized,1e-3));
+baselineDb(~visible) = nan;
+[~,baselineContour] = contour(uGrid,vGrid,baselineDb,[-3 -3],'--', ...
+    'LineColor',[0.10 0.10 0.10],'LineWidth',1.8);
+targetRadius = sind(halfWidth);
+targetCircle = plot(targetRadius*cos(linspace(0,2*pi,361)), ...
+    targetRadius*sin(linspace(0,2*pi,361)),':', ...
+    'Color',[0.88 0.24 0.12],'LineWidth',1.6);
+xline(0,':','Color',[0.55 0.55 0.55],'HandleVisibility','off');
+yline(0,':','Color',[0.55 0.55 0.55],'HandleVisibility','off');
+xlabel('u = sin\theta cos\phi'); ylabel('v = sin\theta sin\phi');
+title('(b) Far-field angular spectrum');
+cb = colorbar; cb.Label.String = 'Optimized normalized power (dB)';
+legend([optimizedContour baselineContour targetCircle], ...
+    {'Optimized -3 dB','TE10 -3 dB','20^o target radius'}, ...
+    'Location','southoutside','NumColumns',3);
 wg.export_paper_figure(fig,fullfile(paths.figures,'07_modal_composition')); close(fig);
+end
+
+function factor = apertureCoherence(field,ex,ey)
+%APERTURECOHERENCE Broadside vector sum relative to unsigned field area.
+integralEx = trapz(field.y,trapz(field.x,ex,2));
+integralEy = trapz(field.y,trapz(field.x,ey,2));
+unsignedIntegral = trapz(field.y,trapz(field.x,hypot(abs(ex),abs(ey)),2));
+factor = hypot(abs(integralEx),abs(integralEy))/max(unsignedIntegral,eps);
 end
