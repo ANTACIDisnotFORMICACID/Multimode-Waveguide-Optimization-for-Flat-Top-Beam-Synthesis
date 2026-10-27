@@ -1,0 +1,38 @@
+{
+  "status": "EXPLORATORY_FULL_AZIMUTH_TWO_MODE_SCAN",
+  "geometry_mm": [
+    60,
+    20,
+    60
+  ],
+  "fixed_port_mode": 1,
+  "candidate_port_modes": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "search_grid": {
+    "theta_step_deg": 1,
+    "phi_step_deg": 10
+  },
+  "evaluation_grid": {
+    "theta_step_deg": 0.5,
+    "phi_step_deg": 5
+  },
+  "objective": "2D extension of MATLAB E/H weighted power objective",
+  "source_reference": "intrinsic_modal",
+  "power_proxy_warning": "Use native AcceptedPower for intrinsic basis."
+}

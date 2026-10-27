@@ -1,0 +1,25 @@
+{
+  "status": "FULL_AZIMUTH_FFD_CROSSCHECKED",
+  "gui_output": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\gui_full_azimuth_15pass_20261028T031303",
+  "independent_cuts": "D:\\homework\\\u7535\u78c1\u5b66\u5c0f\u8bba\u6587\\waveguide_farfield\\results\\hfss\\twelve_mode_60x20x60_iterative_15pass_native_export_20261028\\hfss_raw_complex_cuts.csv",
+  "mode_count": 12,
+  "theta_samples": 181,
+  "phi_samples": 72,
+  "four_ray_complex_l2_error": 1.1238318578047964e-12,
+  "empirical_ffd_to_report_factor": 1000.0,
+  "ffd_sha256": {
+    "eep_1.ffd": "39f9548ad9dc9a678aa3e4da43486e10e8e4ffeaf116d06be706fbb13f5ff746",
+    "eep_2.ffd": "954a9949f8ee866178b1a17b6394715d4b43a13263c2af509d90eb9bd7c84281",
+    "eep_3.ffd": "833b1a5747e715c4e1f0a0a280d683020120bfb8fd87a105458814390ff191f0",
+    "eep_4.ffd": "c47ac6aca0baa09aac70f7b09d0ecabea0e7e2f6f91cc2ecfb8ca30ac468f491",
+    "eep_5.ffd": "40384d5b58c5bfae09647c1401f3823edac7a282ddec4c917786c6f18d3da83b",
+    "eep_6.ffd": "2f3b142c053f8a8c4434f857c9be7a028d38c29bb91977ac67adc2ae7997c735",
+    "eep_7.ffd": "993daa1995c8ff3670bac2371c4a604196bdfea21a98892582efa1a15d33d4db",
+    "eep_8.ffd": "48ad67ac82b846819d4cc7006bb22eaaf295afd639e098ab091a99b7aa2192ce",
+    "eep_9.ffd": "daab3782915e8d7ab4531c14119ce36c77d489992ba38164219b328652ccf1fa",
+    "eep_10.ffd": "18598f136d0a28881e29bf116da7cd3f1046abfe1a941b1c301bd57b35b458f2",
+    "eep_11.ffd": "610a016de5d83e7fbf5bc93b81544e89a4d481e89deea2e9f04fe9683ddd66ab",
+    "eep_12.ffd": "fb5d02fb28aaa4fd3d106ac9ee41e6ae6adf187e7b91d5f7fa13838a5c11cbc5"
+  },
+  "analysis_called": false
+}

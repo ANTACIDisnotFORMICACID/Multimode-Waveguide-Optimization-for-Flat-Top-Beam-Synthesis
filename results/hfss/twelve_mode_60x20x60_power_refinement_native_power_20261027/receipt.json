@@ -1,0 +1,11 @@
+{
+  "status": "NATIVE_POWER_EXPORTED",
+  "analysis_called": false,
+  "project_saved": false,
+  "project": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\waveguide_30ghz_12mode_60x20x60_power_refine_gui_audit_copy.aedt",
+  "setup": "PowerCheck30GHz",
+  "sphere": "OpenApertureSphere",
+  "case_count": 7,
+  "row_count": 14,
+  "warning": "Radiation efficiency above unity indicates that radiated-power accuracy or reference consistency needs investigation; do not claim absolute efficiency."
+}

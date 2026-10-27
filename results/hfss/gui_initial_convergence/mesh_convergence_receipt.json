@@ -1,0 +1,35 @@
+{
+  "source": "D:\\homework\\电磁学小论文\\waveguide_farfield\\hfss\\projects\\waveguide_30ghz.aedtresults\\OpenEndedWaveguide.results\\DV81_S33_V80.EMConvData",
+  "delta_s_target": 0.02,
+  "required_consecutive_passes": 3,
+  "reported_consecutive_passes": 3,
+  "reported_is_converged": true,
+  "target_reached_for_required_passes": true,
+  "passes": [
+    {
+      "PassNo": 1,
+      "SolvedElements": 36871,
+      "MaxMagDeltaS": null
+    },
+    {
+      "PassNo": 2,
+      "SolvedElements": 47937,
+      "MaxMagDeltaS": 0.041410006236573746
+    },
+    {
+      "PassNo": 3,
+      "SolvedElements": 62308,
+      "MaxMagDeltaS": 0.0060504385942201375
+    },
+    {
+      "PassNo": 4,
+      "SolvedElements": 67389,
+      "MaxMagDeltaS": 0.0017684286246116864
+    },
+    {
+      "PassNo": 5,
+      "SolvedElements": 74943,
+      "MaxMagDeltaS": 0.009893279839379375
+    }
+  ]
+}

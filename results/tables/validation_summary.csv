@@ -1,3 +1,3 @@
 Plane,DirectFftPowerRmse,PeakDirectionDifferenceDeg,DirectFftGatePassed,AntennaToolboxStatus,AntennaToolboxRmseDb,AntennaToolboxPeakDifferenceDeg,Message
-E,2.94066524117e-07,0,1,REFERENCE_ONLY_NOT_COMPARABLE,NaN,NaN,Antenna Toolbox straight-waveguide model is not compared with the selected horn.
-H,8.77322666692006e-08,0,1,REFERENCE_ONLY_NOT_COMPARABLE,NaN,NaN,Antenna Toolbox straight-waveguide model is not compared with the selected horn.
+E,2.93959161289095e-07,0,1,REFERENCE_ONLY_NOT_COMPARABLE,NaN,NaN,Antenna Toolbox straight-waveguide model is not compared with the selected horn.
+H,8.77024179357947e-08,0,1,REFERENCE_ONLY_NOT_COMPARABLE,NaN,NaN,Antenna Toolbox straight-waveguide model is not compared with the selected horn.

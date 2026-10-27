@@ -1,0 +1,70 @@
+{
+  "source": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\waveguide_30ghz_12mode_60x20x60_power_refine_gui.aedtresults\\OpenEndedWaveguide.results\\DV81_S144_V0.EMConvData",
+  "delta_s_target": 0.005,
+  "required_consecutive_passes": 3,
+  "reported_consecutive_passes": 1,
+  "reported_is_converged": true,
+  "target_reached_for_required_passes": false,
+  "passes": [
+    {
+      "PassNo": 1,
+      "SolvedElements": 51128,
+      "MaxMagDeltaS": null
+    },
+    {
+      "PassNo": 2,
+      "SolvedElements": 66432,
+      "MaxMagDeltaS": 0.0367777221681291
+    },
+    {
+      "PassNo": 3,
+      "SolvedElements": 86284,
+      "MaxMagDeltaS": 0.0031397668842442256
+    },
+    {
+      "PassNo": 4,
+      "SolvedElements": 112106,
+      "MaxMagDeltaS": 0.0075466102400731806
+    },
+    {
+      "PassNo": 5,
+      "SolvedElements": 143764,
+      "MaxMagDeltaS": 0.0034220644009125382
+    },
+    {
+      "PassNo": 6,
+      "SolvedElements": 176083,
+      "MaxMagDeltaS": 0.009199132839265243
+    },
+    {
+      "PassNo": 7,
+      "SolvedElements": 206265,
+      "MaxMagDeltaS": 0.007620091594701021
+    },
+    {
+      "PassNo": 8,
+      "SolvedElements": 267873,
+      "MaxMagDeltaS": 0.008031706113644644
+    },
+    {
+      "PassNo": 9,
+      "SolvedElements": 344504,
+      "MaxMagDeltaS": 0.0013435255973227478
+    },
+    {
+      "PassNo": 10,
+      "SolvedElements": 447446,
+      "MaxMagDeltaS": 0.002066032781376295
+    },
+    {
+      "PassNo": 11,
+      "SolvedElements": 542214,
+      "MaxMagDeltaS": 0.008641068224381415
+    },
+    {
+      "PassNo": 12,
+      "SolvedElements": 609491,
+      "MaxMagDeltaS": 0.002092328098894172
+    }
+  ]
+}

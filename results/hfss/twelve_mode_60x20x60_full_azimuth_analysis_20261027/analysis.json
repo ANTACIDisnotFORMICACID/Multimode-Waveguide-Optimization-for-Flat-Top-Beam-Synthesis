@@ -1,0 +1,30 @@
+{
+  "basis": "results\\hfss\\twelve_mode_60x20x60_full_azimuth_20261027\\complex_modal_basis.npz",
+  "rows": [
+    {
+      "design": "TE10 candidate (port 1)",
+      "active_modes": 1,
+      "main_disk_ripple_db": 10.269219842356815,
+      "outside_disk_db": -14.43890767823665,
+      "boresight_relative_db": -2.410818666383218e-15,
+      "peak_theta_deg": 0.0,
+      "peak_phi_deg": 285.0,
+      "main_cross_db": -30.228752297051933,
+      "returned_power_proxy": 0.4468305448416308,
+      "nonreturned_power_proxy": 0.5531694551583692
+    },
+    {
+      "design": "Ports 1 + 8",
+      "active_modes": 2,
+      "main_disk_ripple_db": 8.555559407785736,
+      "outside_disk_db": -14.046439632713746,
+      "boresight_relative_db": -1.1255630189624552e-11,
+      "peak_theta_deg": 12.5,
+      "peak_phi_deg": 180.0,
+      "main_cross_db": -30.649106155559128,
+      "returned_power_proxy": 0.5477191720380679,
+      "nonreturned_power_proxy": 0.45228082796193214
+    }
+  ],
+  "power_proxy_note": "Computed from 50-ohm-renormalized S; verify against native AcceptedPower."
+}

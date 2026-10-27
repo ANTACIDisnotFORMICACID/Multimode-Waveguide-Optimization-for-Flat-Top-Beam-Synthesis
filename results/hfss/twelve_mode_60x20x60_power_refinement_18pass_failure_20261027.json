@@ -1,0 +1,15 @@
+{
+  "status": "PASS_13_SOLVER_OUT_OF_MEMORY",
+  "project": "waveguide_30ghz_12mode_60x20x60_power_refine_continue_gui.aedt",
+  "setup": "PowerCheck30GHz",
+  "previous_readable_solution_passes": 12,
+  "failed_pass": 13,
+  "solver": "shared-memory direct matrix solver",
+  "estimated_direct_solver_ram_gb": 69.6,
+  "machine_physical_ram_gb": 31.1,
+  "ram_limit_percent": 90,
+  "free_disk_reported_gb": 111,
+  "error": "SOLVER_OUT_OF_MEMORY",
+  "source": "AEDT Message Manager and DV81_S144_V501.profile in the saved continuation copy",
+  "interpretation": "The failure is a memory limit during matrix solve; available disk capacity is not the primary cause. The preserved 12-pass solution is separate and remains readable."
+}

@@ -9,6 +9,8 @@ import os
 import sys
 from pathlib import Path
 
+from license_environment import restore_ansys_environment
+
 
 def main() -> int:
     parser = argparse.ArgumentParser()
@@ -16,15 +18,23 @@ def main() -> int:
     args = parser.parse_args()
     root = args.project_root.resolve()
     executable = Path(r"D:\Program Files\ANSYS Inc\v252\AnsysEM\ansysedt.exe")
+    licensing_settings = Path(r"D:\Program Files\ANSYS Inc\v252\licensingclient\winx64\LicensingSettings.exe")
+    restored_environment = restore_ansys_environment()
     discovered_by_environment = bool(os.environ.get("ANSYSEM_ROOT252"))
+    appdata = os.environ.get("APPDATA")
+    user_license_ini = Path(appdata) / ".ansys_licensing" / "ansyslmd.ini" if appdata else None
     status = {
         "python": sys.version,
         "pyaedt_available": importlib.util.find_spec("pyaedt") is not None,
         "ansys_aedt_2025_r2_executable": str(executable),
         "ansys_aedt_2025_r2_installed": executable.is_file(),
         "ansysem_root252_was_set": discovered_by_environment,
+        "licensing_settings_installed": licensing_settings.is_file(),
+        "ansyslmd_license_file_environment_set": bool(os.environ.get("ANSYSLMD_LICENSE_FILE")),
+        "restored_environment_sources": restored_environment,
+        "user_license_ini_present": user_license_ini.is_file() if user_license_ini else False,
         "license_verified": False,
-        "note": "Installation checks do not prove that an HFSS solver license can be checked out.",
+        "note": "Configuration presence/absence does not prove that an HFSS solver license can be checked out.",
     }
     output = root / "results" / "hfss"
     output.mkdir(parents=True, exist_ok=True)

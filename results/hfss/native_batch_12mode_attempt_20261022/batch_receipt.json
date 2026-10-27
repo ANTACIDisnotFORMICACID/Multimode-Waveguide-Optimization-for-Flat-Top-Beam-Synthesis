@@ -1,0 +1,21 @@
+{
+  "status": "SOLVER_FAILED",
+  "source_project": "D:\\homework\\\u7535\u78c1\u5b66\u5c0f\u8bba\u6587\\waveguide_farfield\\hfss\\projects\\waveguide_30ghz_12mode.aedt",
+  "batch_project": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\native_batch_12mode_20261022T020209\\waveguide_30ghz_12mode.aedt",
+  "console_log": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\native_batch_12mode_20261022T020209\\batch_console.log",
+  "aedt_log": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\native_batch_12mode_20261022T020209\\aedt_batch.log",
+  "timeout_minutes": 30,
+  "command_flags": [
+    "-Iconic",
+    "-Monitor",
+    "-LogFile",
+    "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\native_batch_12mode_20261022T020209\\aedt_batch.log",
+    "-BatchSolve",
+    "OpenEndedWaveguide:Nominal:Setup30GHz"
+  ],
+  "exit_code": 0,
+  "normal_completion_message": false,
+  "solver_engine_error": true,
+  "result_file_count": 34,
+  "elapsed_seconds": 149.56764316558838
+}

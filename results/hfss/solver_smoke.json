@@ -1,0 +1,27 @@
+{
+  "project": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\one_mode_solver_smoke.aedt",
+  "restored_environment_sources": {
+    "ANSYSEM_ROOT252": "machine",
+    "ANSYSLMD_LICENSE_FILE": "machine"
+  },
+  "design_valid": true,
+  "validation_messages": [
+    "Desktop messages:",
+    "(Modal Network), [warning]  Renormalizing the port impedance will not impact the field results if the 'Include Port Post Processing Effects' is disabled in Edit Sources. (04:48:13 AM  Oct 21, 2026)",
+    "Design validation check PASSED.",
+    "Design validation messages:",
+    "** End of design validation messages. **",
+    "Excitations check:",
+    "Solution type: Modal",
+    "Ports Requested: 1",
+    "Defined excitations number: 1",
+    "Defined excitations names: ['InputPort:1']",
+    "Analysis setup messages:",
+    "Detected setup and sweep: ",
+    "Smoke30GHz"
+  ],
+  "analyze_returned": true,
+  "solution_available": false,
+  "status": "FAILED",
+  "error": "RuntimeError: Minimal guide produced no readable solution"
+}

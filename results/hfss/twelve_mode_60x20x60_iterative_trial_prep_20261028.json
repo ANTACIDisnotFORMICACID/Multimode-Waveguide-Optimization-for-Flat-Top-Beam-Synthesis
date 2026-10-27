@@ -1,0 +1,21 @@
+{
+  "status": "ITERATIVE_TRIAL_PREPARED",
+  "project": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\waveguide_30ghz_12mode_60x20x60_power_refine_gui.aedt",
+  "preserved_archive": "D:\\homework\\\u7535\u78c1\u5b66\u5c0f\u8bba\u6587\\waveguide_farfield\\hfss\\projects\\archives\\waveguide_12mode_60x20x60_powercheck_12pass_20261027.aedtz",
+  "setup": "PowerCheck30GHz",
+  "analysis_called": false,
+  "previous_settings": {
+    "DrivenSolverType": "Direct Solver",
+    "MaximumPasses": 12,
+    "MaxDeltaS": 0.005,
+    "MinimumConvergedPasses": 3
+  },
+  "new_settings": {
+    "DrivenSolverType": "Iterative Solver",
+    "IterativeResidual": 1e-06,
+    "MaximumPasses": 15,
+    "MaxDeltaS": 0.005,
+    "MinimumConvergedPasses": 3
+  },
+  "prior_solution_still_readable": true
+}

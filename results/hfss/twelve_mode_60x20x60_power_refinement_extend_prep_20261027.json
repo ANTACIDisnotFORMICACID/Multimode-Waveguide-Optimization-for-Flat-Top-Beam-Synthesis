@@ -1,0 +1,9 @@
+{
+  "project": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\waveguide_30ghz_12mode_60x20x60_power_refine_continue_gui.aedt",
+  "setup": "PowerCheck30GHz",
+  "new_maximum_passes": 18,
+  "analysis_called": false,
+  "status": "CONTINUATION_PROJECT_PREPARED",
+  "had_readable_solution_before_edit": true,
+  "readable_solution_after_edit": true
+}

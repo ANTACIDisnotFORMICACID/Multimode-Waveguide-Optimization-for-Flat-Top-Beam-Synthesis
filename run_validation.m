@@ -111,7 +111,32 @@ writetable(gridSummary, fullfile(paths.tables, 'grid_convergence.csv'));
 
 hfssFile = fullfile(paths.hfss, 'hfss_patterns.csv');
 hfssStatusFile = fullfile(paths.hfss, 'hfss_status.json');
-if isfile(hfssFile)
+tenModeReceipt = fullfile(paths.hfss,'ten_mode_gui_import_20261022','validation_receipt.json');
+twelveModeReceipt = fullfile(paths.hfss,'twelve_mode_native_import_20261025','validation_receipt.json');
+twelveModeConvergence = fullfile(paths.hfss,'twelve_mode_gui_convergence_20261025', ...
+    'mesh_convergence_receipt.json');
+twelveModeTe10 = fullfile(paths.hfss,'twelve_mode_te10_comparison_20261025', ...
+    'comparison_metrics.json');
+twelveModeEvidence = false;
+if isfile(twelveModeReceipt) && isfile(twelveModeConvergence) && isfile(twelveModeTe10)
+    exportCheck = jsondecode(fileread(twelveModeReceipt));
+    convergenceCheck = jsondecode(fileread(twelveModeConvergence));
+    te10Check = jsondecode(fileread(twelveModeTe10));
+    twelveModeEvidence = strcmp(exportCheck.status,'RAW_EXPORT_VALIDATED') && ...
+        exportCheck.port_mode_count == 12 && ...
+        convergenceCheck.target_reached_for_required_passes && ...
+        te10Check.port_mode == 1 && numel(te10Check.metrics) == 2;
+end
+if twelveModeEvidence
+    hfssStatus = "NATIVE_12MODE_SINGLE_MODE_ONLY";
+    hfssMessage = ["The native 12-mode HFSS solve, complex-field export, and a " + ...
+        "TE10-candidate comparison exist; port eigenfield identity and the final " + ...
+        "optimized multimode comparison remain pending."];
+elseif isfile(tenModeReceipt)
+    hfssStatus = "PRELIMINARY_10MODE_EXPORT";
+    hfssMessage = ["A native 10-mode HFSS complex-field export is validated; " + ...
+        "the corrected 12-mode solution, port-field identity, and final multimode comparison remain pending."];
+elseif isfile(hfssFile)
     hfssStatus = "PENDING_COMPARISON";
     hfssMessage = "HFSS patterns exist but have not yet passed the quantitative comparison.";
 elseif isfile(hfssStatusFile)

@@ -1,0 +1,13 @@
+{
+  "status": "RAW_EXPORT_VALIDATED",
+  "source_folder": "D:\\homework\\电磁学小论文\\waveguide_farfield\\results\\hfss\\twelve_mode_native_export_20261025",
+  "project": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\waveguide_30ghz_12mode_export_once_20261025.aedt",
+  "s_matrix_entries": 144,
+  "frequency_hz": 30000000000.0,
+  "port_mode_count": 12,
+  "raw_mode_phi_cuts": 48,
+  "samples_per_cut": 181,
+  "raw_complex_samples": 8688,
+  "signed_complex_samples": 8664,
+  "analytic_mode_identified": false
+}

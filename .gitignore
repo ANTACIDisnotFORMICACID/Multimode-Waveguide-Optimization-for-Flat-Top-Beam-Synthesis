@@ -1,5 +1,10 @@
 hfss/.pyaedt/
+hfss/.venv/
+results/hfss/probe_*/
+results/hfss/native_insert*/
 *.aedtresults/
+*.aedtz
+hfss/projects/archives/*.zip
 *.lock
 *.log
 __pycache__/

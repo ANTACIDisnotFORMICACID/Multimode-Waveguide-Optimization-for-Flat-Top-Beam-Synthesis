@@ -148,6 +148,8 @@ thetaMap(~visible) = 0;
 phiMap(~visible) = 0;
 optimizedMap = wg.farfield_fft(cfg,optimizedField,thetaMap,phiMap);
 baselineMap = wg.farfield_fft(cfg,baselineField,thetaMap,phiMap);
+optimizedAngular = wg.angular_spectrum_metrics(optimizedMap.power,uGrid,vGrid,halfWidth,transition);
+baselineAngular = wg.angular_spectrum_metrics(baselineMap.power,uGrid,vGrid,halfWidth,transition);
 optimizedNormalized = optimizedMap.power/max(optimizedMap.power(visible));
 baselineNormalized = baselineMap.power/max(baselineMap.power(visible));
 optimizedDb = 10*log10(max(optimizedNormalized,1e-3));
@@ -165,13 +167,20 @@ baselineEdge = wg.farfield_fft(cfg,baselineField,edgeTheta,edgePhi);
 optimizedEdgeDb = 10*log10(mean(optimizedEdge.power)/max(optimizedMap.power(visible)));
 baselineEdgeDb = 10*log10(mean(baselineEdge.power)/max(baselineMap.power(visible)));
 
-design = ["TE10 on selected aperture";"Five-mode synthesis"];
+design = ["TE10 on selected aperture";string(sprintf('%d-mode synthesis',nnz(active)))];
 coherenceFactor = [baselineCoherence;optimizedCoherence];
 halfPowerAreaUV = [baselineHalfPowerArea;optimizedHalfPowerArea];
 meanTargetEdgeDb = [baselineEdgeDb;optimizedEdgeDb];
+boresightRelativeDb = [baselineAngular.BoresightRelativeDb;optimizedAngular.BoresightRelativeDb];
+mainDiskRippleDb = [baselineAngular.MainDiskRippleDb;optimizedAngular.MainDiskRippleDb];
+outsideDiskDb = [baselineAngular.OutsideDiskDb;optimizedAngular.OutsideDiskDb];
+peakThetaDeg = [baselineAngular.PeakThetaDeg;optimizedAngular.PeakThetaDeg];
+peakPhiDeg = [baselineAngular.PeakPhiDeg;optimizedAngular.PeakPhiDeg];
 spectrumSummary = table(design,coherenceFactor,halfPowerAreaUV,meanTargetEdgeDb, ...
+    boresightRelativeDb,mainDiskRippleDb,outsideDiskDb,peakThetaDeg,peakPhiDeg, ...
     'VariableNames',{'Design','ApertureCoherenceFactor','HalfPowerAreaUV', ...
-    'MeanPowerAtTargetEdgeDb'});
+    'MeanPowerAtTargetEdgeDb','BoresightRelativeDb','MainDiskRippleDb', ...
+    'OutsideDiskDb','PeakThetaDeg','PeakPhiDeg'});
 writetable(spectrumSummary,fullfile(paths.tables,'aperture_spectrum_summary.csv'));
 
 fig = figure('Visible','off','Color','w','Position',[100 100 1500 630]);

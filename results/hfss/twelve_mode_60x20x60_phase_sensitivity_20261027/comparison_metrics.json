@@ -1,0 +1,31 @@
+{
+  "port_mode": 1,
+  "analytic_mode_status": "TE10_CANDIDATE_NOT_PORT_FIELD_IDENTIFIED",
+  "reference_model": "quadratic_aperture_phase_sensitivity",
+  "power_normalization": "each plane normalized to its own peak",
+  "comparison_region": "union of normalized values above -20 dB",
+  "metrics": [
+    {
+      "Plane": "E",
+      "ReferencePeakDeg": 0.0,
+      "HfssPeakDeg": 0.0,
+      "PeakDifferenceDeg": 0.0,
+      "ReferenceHpbwDeg": 25.55666453851904,
+      "HfssHpbwDeg": 25.83896149029536,
+      "HpbwRelativeDifference": 0.011045923123138474,
+      "PatternRmseDbAboveMinus20": 1.1611622533820094,
+      "ComparisonSamples": 237
+    },
+    {
+      "Plane": "H",
+      "ReferencePeakDeg": 0.0,
+      "HfssPeakDeg": 0.0,
+      "PeakDifferenceDeg": 0.0,
+      "ReferenceHpbwDeg": 14.741444761882265,
+      "HfssHpbwDeg": 17.746916579070984,
+      "HpbwRelativeDifference": 0.20387905430817244,
+      "PatternRmseDbAboveMinus20": 2.834469446035215,
+      "ComparisonSamples": 126
+    }
+  ]
+}

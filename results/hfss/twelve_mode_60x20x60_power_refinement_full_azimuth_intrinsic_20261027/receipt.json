@@ -1,0 +1,38 @@
+{
+  "status": "FULL_AZIMUTH_EXPORTED_AND_CROSSCHECKED",
+  "project": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\waveguide_30ghz_12mode_60x20x60_power_refine_gui_audit_copy.aedt",
+  "analysis_called": false,
+  "project_saved": false,
+  "source_setting": "WavePort1:1=1W; other 11 modes=0W",
+  "setup": "PowerCheck30GHz : LastAdaptive",
+  "include_port_post_processing": false,
+  "source_reference": "intrinsic_modal",
+  "live_cut_comparison": {
+    "sample_count": 8688,
+    "relative_complex_l2_error": 2.8634787462519167e-15,
+    "empirical_ffd_to_report_factor": 1000.0
+  },
+  "theta_samples": 181,
+  "phi_samples": 72,
+  "mode_count": 12,
+  "ffd_sha256": {
+    "eep_1.ffd": "8ab3ce00bad66c50517c297b8d735faa531ca47e56160edacd7db936f8ce94e0",
+    "eep_2.ffd": "4257083678865a516b72475e0ce4e7853e05b873b9e03b1e1986febef735cc91",
+    "eep_3.ffd": "c3434581843d4102eded18763c7da8205218266fa5b10b443fdd58c686715f72",
+    "eep_4.ffd": "9532bfd7c2e8b90e6ef9b54b9dd17d1438d63704d98d20f394bbc827708a59b6",
+    "eep_5.ffd": "856167d933bd17b4cb7c789b65a1a256fb71069ecd6ed13562955f67975d4a0c",
+    "eep_6.ffd": "4d8379afe3f25f5e791b766be311f73978d0e3aa4a972cd54245b65fc619559d",
+    "eep_7.ffd": "26c009be8155e3dce66d20118288ba1ac3f4d4f65c7222f5c649d8dc95888879",
+    "eep_8.ffd": "419eb149a0b65f01cac69961100264c883c85a03b4ffb3a540085f5e9678e5da",
+    "eep_9.ffd": "0deace025057306fd957c2707ce99709250ae7a743e6408600ac783d5ca444ec",
+    "eep_10.ffd": "f052ee6fe3b1446fea0ffe252747c62bf606ebd3648c331ddb86c5c5a6ee4036",
+    "eep_11.ffd": "766bbf9d57e7244aa5918870b7183a6f3e54fa9f823cf3ffaf4156c68e329c36",
+    "eep_12.ffd": "eb7bf2ef55d77f61b4767fe70830a720608edff7b788ac83f489b590fd0491b8"
+  },
+  "array_shape": [
+    12,
+    181,
+    72,
+    2
+  ]
+}

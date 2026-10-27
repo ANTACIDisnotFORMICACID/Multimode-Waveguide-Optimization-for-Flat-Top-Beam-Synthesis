@@ -1,0 +1,26 @@
+{
+  "source": "D:\\homework\\电磁学小论文\\waveguide_farfield\\hfss\\projects\\waveguide_30ghz_12mode_60x20x60.aedt",
+  "destination": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\waveguide_12mode_port_only_native_gui.aedt",
+  "setup": "PortOnly30GHz",
+  "status": "NATIVE_PORT_ONLY_MODEL_READY",
+  "analysis_called": false,
+  "design_valid": true,
+  "validation_messages": [
+    "Desktop messages:",
+    "Design validation check PASSED.",
+    "Design validation messages:",
+    "** End of design validation messages. **",
+    "Excitations check:",
+    "Solution type: Modal",
+    "Ports Requested: 12",
+    "Defined excitations number: 12",
+    "Defined excitations names: ['WavePort1:7', 'WavePort1:9', 'WavePort1:12', 'WavePort1:4', 'WavePort1:6', 'WavePort1:3', 'WavePort1:5', 'WavePort1:8', 'WavePort1:1', 'WavePort1:11', 'WavePort1:2', 'WavePort1:10']",
+    "Analysis setup messages:",
+    "Detected setup and sweep: ",
+    "Setup30GHz",
+    "PortOnly30GHz"
+  ],
+  "native_ports_only_persisted": true,
+  "native_ports_only_evidence": "PortOnly30GHz setup serializes SolveType='PortsOnly' in the saved AEDT file",
+  "native_save_fields_persisted": true
+}

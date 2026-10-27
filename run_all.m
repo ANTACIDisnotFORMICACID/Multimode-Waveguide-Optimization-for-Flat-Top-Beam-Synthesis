@@ -1,23 +1,30 @@
 function outputs = run_all(varargin)
-%RUN_ALL Rebuild all reproducible MATLAB results from an empty results tree.
+%RUN_ALL Rebuild reproducible MATLAB results without deleting HFSS evidence.
 %
 %   RUN_ALL() runs tests, baseline generation, optimization, and numerical
-%   validation. RUN_ALL('RunHfss',true) also invokes the PyAEDT workflow;
-%   the HFSS script writes a BLOCKED status instead of fabricating results
-%   when AEDT, PyAEDT, or a solver license is unavailable.
+%   validation. HFSS is separate because an AEDT solution and its exported
+%   evidence cannot be reconstructed by the MATLAB workflow alone.
 
 root = fileparts(mfilename('fullpath'));
 addpath(root,fullfile(root,'matlab'));
 parser = inputParser;
-addParameter(parser,'RunHfss',true,@(x)islogical(x)&&isscalar(x));
+addParameter(parser,'RunHfss',false,@(x)islogical(x)&&isscalar(x));
 addParameter(parser,'RunAntennaToolbox',true,@(x)islogical(x)&&isscalar(x));
 parse(parser,varargin{:});
+if parser.Results.RunHfss
+    error('run_all:HFSSSeparate', [ ...
+        'HFSS solve is not launched from run_all. Use the documented HFSS ' ...
+        'workflow and import only a verified native export.']);
+end
 
 cfg = wg.default_config(root);
 cfg.validation.runHfss = parser.Results.RunHfss;
 cfg.validation.runAntennaToolbox = parser.Results.RunAntennaToolbox;
-if isfolder(cfg.resultsDir)
-    rmdir(cfg.resultsDir,'s');
+for folder = ["figures","tables","data"]
+    generated = fullfile(cfg.resultsDir,folder);
+    if isfolder(generated)
+        rmdir(generated,'s');
+    end
 end
 
 outputs.tests = run_tests();
@@ -25,16 +32,8 @@ outputs.baseline = run_baseline(cfg);
 outputs.geometry = run_geometry_scan(cfg);
 outputs.optimization = run_optimization(cfg);
 
-if cfg.validation.runHfss
-    pythonExe = fullfile('D:','Miniconda3','python.exe');
-    hfssScript = fullfile(root,'hfss','build_and_solve.py');
-    command = sprintf('"%s" "%s" --project-root "%s" --solve', ...
-        pythonExe,hfssScript,root);
-    [outputs.hfssExitCode,outputs.hfssLog] = system(command);
-else
-    outputs.hfssExitCode = NaN;
-    outputs.hfssLog = 'HFSS was not requested. Run run_all(''RunHfss'',true).';
-end
+outputs.hfssExitCode = NaN;
+outputs.hfssLog = 'HFSS is separate; existing solver evidence is preserved.';
 outputs.validation = run_validation(cfg);
 save(fullfile(cfg.resultsDir,'data','run_all_outputs.mat'),'outputs','cfg');
 end

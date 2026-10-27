@@ -1,0 +1,16 @@
+{
+  "python": "3.10.16 (remotes/origin/14d18b8e2626165312e076b70cf60f0faa8db8d5-dirty:14d18b8e, May 20 2) [MSC v.1942 64 bit (AMD64)]",
+  "pyaedt_available": true,
+  "ansys_aedt_2025_r2_executable": "D:\\Program Files\\ANSYS Inc\\v252\\AnsysEM\\ansysedt.exe",
+  "ansys_aedt_2025_r2_installed": true,
+  "ansysem_root252_was_set": true,
+  "licensing_settings_installed": true,
+  "ansyslmd_license_file_environment_set": true,
+  "restored_environment_sources": {
+    "ANSYSEM_ROOT252": "machine",
+    "ANSYSLMD_LICENSE_FILE": "machine"
+  },
+  "user_license_ini_present": false,
+  "license_verified": false,
+  "note": "Configuration presence/absence does not prove that an HFSS solver license can be checked out."
+}

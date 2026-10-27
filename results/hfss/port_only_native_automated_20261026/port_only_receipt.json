@@ -1,0 +1,33 @@
+{
+  "status": "PORT_ONLY_SOLVER_ENGINE_FAILED",
+  "primary_failure": "AEDT Message Manager reported Engine terminated unexpectedly during a verified native PortsOnly setup; the subsequent Setup.is_solved probe also raised IndexError.",
+  "source_project": "D:\\homework\\电磁学小论文\\waveguide_farfield\\hfss\\projects\\waveguide_30ghz_12mode_60x20x60.aedt",
+  "disposable_project": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\port_only_12mode_19760_1793026852.aedt",
+  "port_modes": 12,
+  "full_3d_solve_requested": false,
+  "fields_requested": true,
+  "design_valid": true,
+  "validation_messages": [
+    "Desktop messages:",
+    "Design validation check PASSED.",
+    "Design validation messages:",
+    "** End of design validation messages. **",
+    "Excitations check:",
+    "Solution type: Modal",
+    "Ports Requested: 12",
+    "Defined excitations number: 12",
+    "Defined excitations names: ['WavePort1:2', 'WavePort1:6', 'WavePort1:11', 'WavePort1:4', 'WavePort1:3', 'WavePort1:10', 'WavePort1:7', 'WavePort1:8', 'WavePort1:12', 'WavePort1:5', 'WavePort1:9', 'WavePort1:1']",
+    "Analysis setup messages:",
+    "Detected setup and sweep: ",
+    "Setup30GHz",
+    "PortOnly30GHz"
+  ],
+  "native_port_only_persisted": true,
+  "analyze_returned": true,
+  "solver_messages": [
+    "Project: port_only_12mode_19760_1793026852, Design: OpenEndedWaveguide (Modal Network), [warning]  Com Engine non-responsive since 23:01:08, October 26, 2026. \n Can be due to CPU intensive processing or network problems. \n If persisting for long, manually kill the com engine process and restart analysis. Retrying.....  (11:02:08 PM  Oct 26, 2026)",
+    "Project: port_only_12mode_19760_1793026852, Design: OpenEndedWaveguide (Modal Network), [error]  Machine Local Machine: Engine terminated unexpectedly, or machine reported error or was inaccessible. (11:03:06 PM  Oct 26, 2026)"
+  ],
+  "error": "IndexError: list index out of range",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\homework\\电磁学小论文\\waveguide_farfield\\hfss\\port_only_preflight.py\", line 73, in main\n    receipt[\"setup_is_solved\"] = bool(setup.is_solved)\n  File \"C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\py310_pyaedt_20261025\\lib\\site-packages\\ansys\\aedt\\core\\modules\\solve_setup.py\", line 317, in is_solved\n    expressions=expressions[0],\nIndexError: list index out of range\n"
+}

@@ -1,0 +1,12 @@
+{
+  "status": "DISPERSION_GROUPS_COMPARED",
+  "port_modes": 12,
+  "source": "D:\\homework\\\u7535\u78c1\u5b66\u5c0f\u8bba\u6587\\waveguide_farfield\\results\\hfss\\port_only_native_export_20261026",
+  "max_relative_beta_error_pct": 1.137466509267206,
+  "near_cutoff_port_modes": [
+    11,
+    12
+  ],
+  "port_zo_interpretation": "PORT ONLY MODAL ZO; PORT CONFIGURED FOR ZPI, NOT ANALYTIC TE/TM WAVE Z",
+  "mode_identity": "DEGENERATE GROUP ONLY; PORT EIGENFIELDS STILL NEEDED"
+}

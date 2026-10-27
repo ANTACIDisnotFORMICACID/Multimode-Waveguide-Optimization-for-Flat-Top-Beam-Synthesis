@@ -1,0 +1,10 @@
+{
+  "status": "FOUR_RAY_COMPLEX_COMPARISON_EXPORTED",
+  "baseline_basis": "D:\\homework\\\u7535\u78c1\u5b66\u5c0f\u8bba\u6587\\waveguide_farfield\\results\\hfss\\twelve_mode_60x20x60_power_refinement_full_azimuth_intrinsic_20261027\\complex_modal_basis.npz",
+  "new_cuts": "D:\\homework\\\u7535\u78c1\u5b66\u5c0f\u8bba\u6587\\waveguide_farfield\\results\\hfss\\twelve_mode_60x20x60_iterative_15pass_native_export_20261028\\hfss_raw_complex_cuts.csv",
+  "weights": "D:\\homework\\\u7535\u78c1\u5b66\u5c0f\u8bba\u6587\\waveguide_farfield\\results\\hfss\\twelve_mode_60x20x60_three_mode_2d_intrinsic_20261027\\selected_weights.csv",
+  "source_reference": "intrinsic_modal",
+  "analysis_called": false,
+  "scope": "Four azimuth rays only; does not certify full-azimuth pattern or absolute efficiency",
+  "temporary_gui_export": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\gui_export_20261028T025614\\hfss_raw_complex_cuts.csv"
+}

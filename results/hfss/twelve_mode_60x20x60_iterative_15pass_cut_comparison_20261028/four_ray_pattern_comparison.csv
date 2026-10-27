@@ -1,0 +1,3 @@
+case,normalized_rmse_db_above_minus20,visible_sample_count,old_four_ray_main_ripple_db,new_four_ray_main_ripple_db,old_four_ray_outside_max_db,new_four_ray_outside_max_db,old_peak_phi_deg,new_peak_phi_deg,old_peak_theta_deg,new_peak_theta_deg
+port 1,0.05740463305589867,358,10.618623675818238,10.578895712919396,-14.180004425201695,-14.141172402758514,90,0,0.0,0.0
+ports 1+5+8 fixed intrinsic weights,0.06471382313586659,510,3.928317728089702,3.909825963580069,-10.190211369328638,-10.154109359434688,270,180,2.0,11.5

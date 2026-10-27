@@ -1,0 +1,15 @@
+{
+  "analysis_called_by_script": false, 
+  "complex_cut_samples": 8688, 
+  "complex_cuts_csv": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\gui_export_20261028T025614\\hfss_raw_complex_cuts.csv", 
+  "eep_mapping": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\gui_export_20261028T025614\\embedded_patterns\\eep.txt", 
+  "include_port_post_processing": false, 
+  "output": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\gui_export_20261028T025614", 
+  "port_modes": 12, 
+  "project": "waveguide_30ghz_12mode_60x20x60_power_refine_gui", 
+  "project_saved_by_script": false, 
+  "s_matrix_csv": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\gui_export_20261028T025614\\s_matrix_30ghz.csv", 
+  "setup": "PowerCheck30GHz : LastAdaptive", 
+  "solved_data_checked": true, 
+  "status": "EXPORTED_UNVERIFIED"
+}

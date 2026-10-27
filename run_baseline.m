@@ -25,17 +25,19 @@ for familyIdx = 1:numel(families)
     scatter(x(mask), shown.CutoffGHz(mask), 75, colors(familyIdx,:), ...
         markers{familyIdx}, 'filled', 'DisplayName', families(familyIdx));
 end
-cutoffMask = abs(shown.CutoffGHz-cfg.frequencyHz/1e9) <= cfg.cutoffToleranceHz/1e9;
-scatter(x(cutoffMask),shown.CutoffGHz(cutoffMask),130,'d', ...
+% With the exact vacuum speed of light, TE02 and TE40 lie just below 30 GHz.
+nearCutoffMask = abs(shown.CutoffGHz-cfg.frequencyHz/1e9) < 0.1;
+scatter(x(nearCutoffMask),shown.CutoffGHz(nearCutoffMask),130,'d', ...
     'MarkerEdgeColor',[0.1 0.1 0.1],'LineWidth',1.6, ...
-    'DisplayName','At cutoff');
+    'DisplayName','Within 0.1 GHz of cutoff');
 yline(cfg.frequencyHz/1e9, '--', '30 GHz', 'Color',[0.15 0.15 0.15], ...
     'LineWidth',1.5,'LabelHorizontalAlignment','right','HandleVisibility','off');
 xlim([0.5 height(shown)+0.5]); ylim([0 40]);
 ax = gca; ax.XTick = x; ax.XTickLabel = cellstr(shown.Name); ax.XTickLabelRotation = 35;
 ylabel('Cutoff frequency (GHz)');
 title('Mode availability at 30 GHz');
-subtitle(sprintf('20 mm x 10 mm rectangular waveguide | %d propagating modes | 2 modes at cutoff',height(modes)));
+subtitle(sprintf('20 mm x 10 mm rectangular waveguide | %d propagating modes | %d near cutoff', ...
+    height(modes),nnz(nearCutoffMask)));
 grid on; legend('Location','northwest','NumColumns',3);
 text(0.8,2.1,'PROPAGATING REGION','Color',[0.07 0.42 0.23], ...
     'FontWeight','bold','FontSize',11);

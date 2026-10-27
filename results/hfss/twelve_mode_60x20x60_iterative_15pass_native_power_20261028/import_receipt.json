@@ -1,0 +1,11 @@
+{
+  "status": "THREE_IDENTICAL_GUI_EXPORTS_IMPORTED",
+  "sources": [
+    "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\gui_power_15pass_20261028T023122\\native_power_comparison.csv",
+    "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\gui_power_15pass_20261028T024526\\native_power_comparison.csv",
+    "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\gui_power_15pass_20261028T024540\\native_power_comparison.csv"
+  ],
+  "latest_source": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\gui_power_15pass_20261028T024540\\native_power_comparison.csv",
+  "setup": "PowerCheck30GHz : LastAdaptive",
+  "analysis_called": false
+}

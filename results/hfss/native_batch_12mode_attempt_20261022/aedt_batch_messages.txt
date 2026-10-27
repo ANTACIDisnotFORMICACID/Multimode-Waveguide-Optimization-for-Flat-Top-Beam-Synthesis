@@ -1,0 +1,34 @@
+ 
+Ansys Electronics Desktop Version 2025.2.0, Build: 2025-05-16 12:03:40
+Location: D:\Program Files\ANSYS Inc\v252\AnsysEM\ansysedt.exe
+Batch Solve/Save: C:\Users\ASUS\AppData\Local\Temp\waveguide_farfield_hfss\native_batch_12mode_20261022T020209\waveguide_30ghz_12mode.aedt
+Starting Batch Run: 2:02:11 AM  Oct 22, 2026
+Running as user : FORMIC-ACID\ASUS
+Temp directory: C:\Users\ASUS\AppData\Local\Temp
+Project directory: D:\Documents\Ansoft
+Simulation settings:
+
+Design type: HFSS
+Allow off core: True
+Using manual settings
+Two level: Disabled
+Distribution types: Variations, Frequencies, Mesh Assembly, Transient Excitations, Domain Solver
+Machines:
+localhost RAM: 90%, task0:1 cores, num gpus:0, gpu indexes:, task1:1 cores, num gpus:0, gpu indexes:, task2:1 cores, num gpus:0, gpu indexes:, task3:1 cores, num gpus:0, gpu indexes:, task4:1 cores, num gpus:0, gpu indexes:, task5:1 cores, num gpus:0, gpu indexes:, task6:1 cores, num gpus:0, gpu indexes:, task7:1 cores, num gpus:0, gpu indexes:, task8:1 cores, num gpus:0, gpu indexes:, task9:1 cores, num gpus:0, gpu indexes:, task10:1 cores, num gpus:0, gpu indexes:, task11:1 cores, num gpus:0, gpu indexes:, task12:1 cores, num gpus:0, gpu indexes:, task13:1 cores, num gpus:0, gpu indexes:, task14:1 cores, num gpus:0, gpu indexes:, task15:1 cores, num gpus:0, gpu indexes:
+-- Message Window --
+      *Global - Messages
+        [info] Simulation settings:
+        [info]   Design type: HFSS
+        [info] Allow off core: True
+        [info] Using manual settings
+        [info] Two level: Disabled
+        [info] Distribution types: Variations, Frequencies, Mesh Assembly, Transient Excitations, Domain Solver
+        [info] Machines:
+        [info] localhost RAM: 90%, task0:1 cores, num gpus:0, gpu indexes:, task1:1 cores, num gpus:0, gpu indexes:, task2:1 cores, num gpus:0, gpu indexes:, task3:1 cores, num gpus:0, gpu indexes:, task4:1 cores, num gpus:0, gpu indexes:, task5:1 cores, num gpus:0, gpu indexes:, task6:1 cores, num gpus:0, gpu indexes:, task7:1 cores, num gpus:0, gpu indexes:, task8:1 cores, num gpus:0, gpu indexes:, task9:1 cores, num gpus:0, gpu indexes:, task10:1 cores, num gpus:0, gpu indexes:, task11:1 cores, num gpus:0, gpu indexes:, task12:1 cores, num gpus:0, gpu indexes:, task13:1 cores, num gpus:0, gpu indexes:, task14:1 cores, num gpus:0, gpu indexes:, task15:1 cores, num gpus:0, gpu indexes:
+        [info] Using command line: "D:\Program Files\ANSYS Inc\v252\AnsysEM\ansysedt.exe -Iconic -Monitor -LogFile C:\Users\ASUS\AppData\Local\Temp\waveguide_farfield_hfss\native_batch_12mode_20261022T020209\aedt_batch.log -BatchSolve OpenEndedWaveguide:Nominal:Setup30GHz C:\Users\ASUS\AppData\Local\Temp\waveguide_farfield_hfss\native_batch_12mode_20261022T020209\waveguide_30ghz_12mode.aedt".
+      waveguide_30ghz_12mode (C:/Users/ASUS/AppData/Local/Temp/waveguide_farfield_hfss/native_batch_12mode_20261022T020209/)
+        OpenEndedWaveguide (Modal Network)
+          [warning] Com Engine non-responsive since 02:02:29, October 22, 2026.   Can be due to CPU intensive processing or network problems.   If persisting for long, manually kill the com engine process and restart analysis. Retrying.....  (02:03:29 AM  Oct 22, 2026)
+          [error] Machine Local Machine: Engine terminated unexpectedly, or machine reported error or was inaccessible. (02:04:27 AM  Oct 22, 2026)
+-- Message Window --
+Stopping Batch Run: 2:04:38 AM  Oct 22, 2026

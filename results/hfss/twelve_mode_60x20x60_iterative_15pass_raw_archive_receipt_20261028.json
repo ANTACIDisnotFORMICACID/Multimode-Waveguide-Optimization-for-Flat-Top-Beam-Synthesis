@@ -1,0 +1,13 @@
+{
+  "status": "RAW_RESULTS_ARCHIVED_AND_CRC_CHECKED",
+  "project": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\waveguide_30ghz_12mode_60x20x60_power_refine_gui.aedt",
+  "results": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\waveguide_30ghz_12mode_60x20x60_power_refine_gui.aedtresults",
+  "archive": "D:\\homework\\\u7535\u78c1\u5b66\u5c0f\u8bba\u6587\\waveguide_farfield\\hfss\\projects\\archives\\waveguide_12mode_60x20x60_powercheck_iterative_15pass_raw_20261028.zip",
+  "format": "ordinary_zip_not_aedtz",
+  "source_file_count": 150,
+  "source_bytes": 3001370455,
+  "analysis_called": false,
+  "archive_bytes": 2653997208,
+  "sha256": "f4007c5cf6031fece756391ada5c372feac78c43c99c111e92cb922475f76a32",
+  "uncompressed_bytes": 3001370455
+}

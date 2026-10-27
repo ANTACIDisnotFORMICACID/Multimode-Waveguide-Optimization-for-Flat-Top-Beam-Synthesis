@@ -1,0 +1,18 @@
+{
+  "aedt_version": "2025.2",
+  "python_version": "3.10.16",
+  "pyaedt_version": "0.18.1",
+  "status": "DESIGN_CREATION_FAILED",
+  "desktop_started": true,
+  "project_created": true,
+  "design_created": false,
+  "project_saved_with_verified_design": false,
+  "error": "TypeError: __init__() should return None, not 'bool'",
+  "log_symptom": "'nonetype' object has no attribute 'getname' on active_design",
+  "driven_modal_identifier_retested": true,
+  "driven_modal_identifier_result": "DESIGN_CREATION_FAILED",
+  "flexnet_server_list_empty": true,
+  "ansyslmd_license_file_environment_set": false,
+  "solve_attempted": false,
+  "license_verified": false
+}

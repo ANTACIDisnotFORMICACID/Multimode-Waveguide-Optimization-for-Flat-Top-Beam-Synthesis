@@ -1,0 +1,14 @@
+{
+  "aedt_version": "2025.2",
+  "pyaedt_version": "0.18.1",
+  "python_version": "3.10.16",
+  "design_name": "ApiProbe",
+  "solution_type": "Modal",
+  "driven_modal_insert": true,
+  "restored_environment_sources": {
+    "ANSYSEM_ROOT252": "machine",
+    "ANSYSLMD_LICENSE_FILE": "machine"
+  },
+  "project_saved_in_ascii_temp_directory": true,
+  "status": "DESIGN_CREATED"
+}

@@ -21,9 +21,12 @@ classdef TestWaveguideCore < matlab.unittest.TestCase
                 (catalog.n/cfg.heightM).^2);
             relativeError = abs(catalog.CutoffHz-expected)./expected;
             testCase.verifyLessThan(max(relativeError), 1e-10);
-            testCase.verifyEqual(catalog.Status(catalog.Name == "TE02"), "cutoff");
-            testCase.verifyEqual(catalog.Status(catalog.Name == "TE40"), "cutoff");
-            testCase.verifyFalse(any(catalog.Status(catalog.Name == "TE02") == "propagating"));
+            testCase.verifyEqual(cfg.c0,299792458);
+            testCase.verifyEqual(catalog.Status(catalog.Name == "TE02"), "propagating");
+            testCase.verifyEqual(catalog.Status(catalog.Name == "TE40"), "propagating");
+            testCase.verifyEqual(sum(catalog.Status == "propagating"),12);
+            testCase.verifyEqual(catalog.CutoffGHz(catalog.Name == "TE02"), ...
+                29.9792458,'AbsTol',1e-9);
         end
 
         function representativeModesHaveUnitPowerAndBoundaryConditions(testCase)
@@ -159,6 +162,18 @@ classdef TestWaveguideCore < matlab.unittest.TestCase
             solution = wg.run_pso_solver(@(x)sum(x.^2),-ones(3,1),ones(3,1),cfg,0);
             testCase.verifyGreaterThanOrEqual(min(diff(solution.history(:,1))),0);
             testCase.verifyGreaterThanOrEqual(min(-diff(solution.history(:,2))),-1e-12);
+        end
+
+        function angularSpectrumDetectsOffAxisPeak(testCase)
+            [u,v] = meshgrid(-0.8:0.4:0.8);
+            power = ones(size(u));
+            power(3,3) = 0.1;
+            power(3,5) = 2;
+            metrics = wg.angular_spectrum_metrics(power,u,v,20,20);
+            testCase.verifyEqual(metrics.PeakThetaDeg,asind(0.8),'AbsTol',1e-12);
+            testCase.verifyEqual(metrics.BoresightRelativeDb,10*log10(0.05),'AbsTol',1e-12);
+            testCase.verifyEqual(metrics.OutsideDiskDb,0,'AbsTol',1e-12);
+            testCase.verifyEqual(metrics.MainDiskRippleDb,0,'AbsTol',1e-12);
         end
     end
 end

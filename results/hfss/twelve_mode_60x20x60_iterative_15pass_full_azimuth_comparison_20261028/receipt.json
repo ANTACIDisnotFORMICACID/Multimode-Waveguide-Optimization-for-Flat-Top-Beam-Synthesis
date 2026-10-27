@@ -1,0 +1,7 @@
+{
+  "status": "MESH_PATTERN_COMPARISON_EXPORTED",
+  "baseline_basis": "results\\hfss\\twelve_mode_60x20x60_power_refinement_full_azimuth_intrinsic_20261027\\complex_modal_basis.npz",
+  "refined_basis": "results\\hfss\\twelve_mode_60x20x60_iterative_15pass_full_azimuth_intrinsic_20261028\\complex_modal_basis.npz",
+  "weights": "results\\hfss\\twelve_mode_60x20x60_three_mode_2d_intrinsic_20261027\\selected_weights.csv",
+  "caveat": "The refined solve reached its adaptive pass cap before three consecutive MaxDeltaS passes."
+}

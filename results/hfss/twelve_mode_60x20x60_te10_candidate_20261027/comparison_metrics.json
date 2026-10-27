@@ -1,0 +1,31 @@
+{
+  "port_mode": 1,
+  "analytic_mode_status": "TE10_CANDIDATE_NOT_PORT_FIELD_IDENTIFIED",
+  "reference_model": "ideal_adiabatic_horn_aperture",
+  "power_normalization": "each plane normalized to its own peak",
+  "comparison_region": "union of normalized values above -20 dB",
+  "metrics": [
+    {
+      "Plane": "E",
+      "ReferencePeakDeg": 0.0,
+      "HfssPeakDeg": 0.0,
+      "PeakDifferenceDeg": 0.0,
+      "ReferenceHpbwDeg": 25.520230217751756,
+      "HfssHpbwDeg": 25.83896149029536,
+      "HpbwRelativeDifference": 0.012489357259868961,
+      "PatternRmseDbAboveMinus20": 1.0022808458264265,
+      "ComparisonSamples": 235
+    },
+    {
+      "Plane": "H",
+      "ReferencePeakDeg": 0.0,
+      "HfssPeakDeg": 0.0,
+      "PeakDifferenceDeg": 0.0,
+      "ReferenceHpbwDeg": 11.260522641750478,
+      "HfssHpbwDeg": 17.746916579070984,
+      "HpbwRelativeDifference": 0.5760295630747188,
+      "PatternRmseDbAboveMinus20": 17.440260846030846,
+      "ComparisonSamples": 126
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "source": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\waveguide_30ghz_12mode_60x20x60_gui.aedtresults\\OpenEndedWaveguide.results\\DV81_S33_V0.EMConvData",
+  "delta_s_target": 0.02,
+  "required_consecutive_passes": 3,
+  "reported_consecutive_passes": 3,
+  "reported_is_converged": true,
+  "target_reached_for_required_passes": true,
+  "passes": [
+    {
+      "PassNo": 1,
+      "SolvedElements": 51128,
+      "MaxMagDeltaS": null
+    },
+    {
+      "PassNo": 2,
+      "SolvedElements": 66432,
+      "MaxMagDeltaS": 0.03677772216816772
+    },
+    {
+      "PassNo": 3,
+      "SolvedElements": 86284,
+      "MaxMagDeltaS": 0.0031397668841595086
+    },
+    {
+      "PassNo": 4,
+      "SolvedElements": 112106,
+      "MaxMagDeltaS": 0.007546610240025994
+    },
+    {
+      "PassNo": 5,
+      "SolvedElements": 143764,
+      "MaxMagDeltaS": 0.00342206440086294
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "status": "DISPERSION_GROUPS_COMPARED",
+  "port_modes": 12,
+  "source": "D:\\homework\\\u7535\u78c1\u5b66\u5c0f\u8bba\u6587\\waveguide_farfield\\results\\hfss\\twelve_mode_port_metadata_20261025",
+  "max_relative_beta_error_pct": 1.075175800773383,
+  "near_cutoff_port_modes": [
+    11,
+    12
+  ],
+  "port_zo_interpretation": "HFSS REPORT IS 50-OHM RENORMALIZED, NOT TE/TM WAVE IMPEDANCE",
+  "mode_identity": "DEGENERATE GROUP ONLY; PORT EIGENFIELDS STILL NEEDED"
+}

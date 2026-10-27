@@ -1,0 +1,50 @@
+{
+  "status": "EXPORTED_UNVERIFIED",
+  "project": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\waveguide_12mode_port_only_readonly_probe.aedt",
+  "port_modes": 12,
+  "analysis_called": false,
+  "project_saved": false,
+  "categories": [
+    "Gamma",
+    "Port Zo",
+    "Lambda",
+    "Epsilon",
+    "Passivity",
+    "Design",
+    "Expression Cache",
+    "Expression Converge",
+    "Solution Convergence"
+  ],
+  "quantities": {
+    "Gamma": [
+      "Gamma(WavePort1:1)",
+      "Gamma(WavePort1:2)",
+      "Gamma(WavePort1:3)",
+      "Gamma(WavePort1:4)",
+      "Gamma(WavePort1:5)",
+      "Gamma(WavePort1:6)",
+      "Gamma(WavePort1:7)",
+      "Gamma(WavePort1:8)",
+      "Gamma(WavePort1:9)",
+      "Gamma(WavePort1:10)",
+      "Gamma(WavePort1:11)",
+      "Gamma(WavePort1:12)"
+    ],
+    "Port Zo": [
+      "Zo(WavePort1:1)",
+      "Zo(WavePort1:2)",
+      "Zo(WavePort1:3)",
+      "Zo(WavePort1:4)",
+      "Zo(WavePort1:5)",
+      "Zo(WavePort1:6)",
+      "Zo(WavePort1:7)",
+      "Zo(WavePort1:8)",
+      "Zo(WavePort1:9)",
+      "Zo(WavePort1:10)",
+      "Zo(WavePort1:11)",
+      "Zo(WavePort1:12)"
+    ]
+  },
+  "setup_sweep": "PortOnly30GHz : PortOnly",
+  "row_count": 24
+}

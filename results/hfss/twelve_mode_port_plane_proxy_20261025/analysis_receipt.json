@@ -1,0 +1,21 @@
+{
+  "status": "TOTAL_FIELD_TEMPLATE_PROXY",
+  "input_dir": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\port_field_export_20261025T180909",
+  "catalog": "D:\\homework\\\u7535\u78c1\u5b66\u5c0f\u8bba\u6587\\waveguide_farfield\\results\\tables\\mode_catalog.csv",
+  "samples_per_grid": 361,
+  "port_modes": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "note": "3D total fields contain reflected waves; these are not port eigenfields."
+}

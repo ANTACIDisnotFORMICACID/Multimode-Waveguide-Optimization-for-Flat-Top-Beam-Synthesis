@@ -1,0 +1,37 @@
+{
+  "status": "FULL_AZIMUTH_EXPORTED_AND_CROSSCHECKED",
+  "project": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\waveguide_30ghz_12mode_60x20x60_dense_probe.aedt",
+  "analysis_called": false,
+  "project_saved": false,
+  "source_setting": "WavePort1:1=1W; other 11 modes=0W",
+  "include_port_post_processing": false,
+  "source_reference": "intrinsic_modal",
+  "live_cut_comparison": {
+    "sample_count": 8688,
+    "relative_complex_l2_error": 5.421647548055695e-16,
+    "empirical_ffd_to_report_factor": 1000.0
+  },
+  "theta_samples": 181,
+  "phi_samples": 72,
+  "mode_count": 12,
+  "ffd_sha256": {
+    "eep_1.ffd": "1cd8056f247cd5dd4f411e64b128aba0863a7e999801cba7fea236846c56819b",
+    "eep_2.ffd": "dda60a9ca75c8d29aed167cf2a8b109443a339b767f295f0c72122a41f443cf7",
+    "eep_3.ffd": "651c84a9a8e04f69e97790446b3687d0e818e2990ec37672b17446c68b6bdd37",
+    "eep_4.ffd": "f8c5298795c85fc5cc9cba57d5a0c53969887bbf3845c8c8b01e118435b4c2f6",
+    "eep_5.ffd": "bd96c3af680f0eb3baf3eec16123471156222aaa8fead9419b79c21afcba5cb8",
+    "eep_6.ffd": "74d0e45a11f29a2f69ba9f95e8b21bd78ab3ff5bf1982f1654bdccc8af8c9f88",
+    "eep_7.ffd": "bf56a4a7916fab8ec7a4634a382468214478425b71e64d472560258fb8cb3f44",
+    "eep_8.ffd": "fac3f40b547ca4dace50f9f86c79c847be73523fc4e6f079f33366102d4ecf43",
+    "eep_9.ffd": "b440832190907b95aed24672da7e43087d8529cc971ff192039ec59f68f245df",
+    "eep_10.ffd": "1b1b9a78f3e5d0cfd4d3253e56ad5eb25a369ba0dd58a390c7c2cc0875cd5578",
+    "eep_11.ffd": "694daff3a5daf037c46f73a22968ec7930df31ce26f199160b82812131a0d818",
+    "eep_12.ffd": "b2452b37dd1dfca3cba2c77837f24a57058a1c2a41bc110056f6b4494e4b07bb"
+  },
+  "array_shape": [
+    12,
+    181,
+    72,
+    2
+  ]
+}

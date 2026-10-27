@@ -1,0 +1,41 @@
+{
+  "status": "MODEL_BUILT",
+  "stage": "model",
+  "aedt_version": "2025.2",
+  "pyaedt_version": "0.18.1",
+  "project": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\waveguide_30ghz_12mode_2025r2_9980.aedt",
+  "repository_project": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_12mode_stage_20261025\\hfss\\projects\\waveguide_30ghz_12mode.aedt",
+  "solve_requested": false,
+  "port_modes": 12,
+  "license_verified": false,
+  "message": "Selected pyramidal horn, fixed 12-mode feed port, PML, setup, and far-field sphere were created.",
+  "restored_environment_sources": {
+    "ANSYSEM_ROOT252": "machine",
+    "ANSYSLMD_LICENSE_FILE": "machine"
+  },
+  "geometry": {
+    "aperture_width_mm": 60.0,
+    "aperture_height_mm": 20.0,
+    "flare_length_mm": 60.0,
+    "feed_straight_length_mm": 40.0
+  },
+  "design_validation": {
+    "valid": true,
+    "messages": [
+      "Desktop messages:",
+      "(Modal Network), [warning]  Renormalizing the port impedance will not impact the field results if the 'Include Port Post Processing Effects' is disabled in Edit Sources. (06:18:23 PM  Oct 25, 2026)",
+      "Design validation check PASSED.",
+      "Design validation messages:",
+      "** End of design validation messages. **",
+      "Excitations check:",
+      "Solution type: Modal",
+      "Ports Requested: 12",
+      "Defined excitations number: 12",
+      "Defined excitations names: ['WavePort1:8', 'WavePort1:11', 'WavePort1:7', 'WavePort1:1', 'WavePort1:6', 'WavePort1:4', 'WavePort1:12', 'WavePort1:5', 'WavePort1:2', 'WavePort1:10', 'WavePort1:9', 'WavePort1:3']",
+      "Analysis setup messages:",
+      "Detected setup and sweep: ",
+      "Setup30GHz"
+    ]
+  },
+  "elapsed_seconds": 34.8868510723114
+}

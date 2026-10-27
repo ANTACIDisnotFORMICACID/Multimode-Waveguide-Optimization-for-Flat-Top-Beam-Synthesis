@@ -1,0 +1,7 @@
+{
+  "status": "POWER_REFINEMENT_COMPARED",
+  "baseline_csv": "results\\hfss\\twelve_mode_60x20x60_native_power_audit_intrinsic_20261027\\native_power_comparison.csv",
+  "refined_csv": "results\\hfss\\twelve_mode_60x20x60_power_refinement_native_power_20261027\\native_power_comparison.csv",
+  "case_count": 7,
+  "note": "Numerical imbalance is reported, not silently converted into efficiency."
+}

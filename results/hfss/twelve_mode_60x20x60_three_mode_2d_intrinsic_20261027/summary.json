@@ -1,0 +1,35 @@
+{
+  "status": "EXPLORATORY_THREE_PORT_FULL_AZIMUTH_OPTIMIZATION",
+  "ports": [
+    1,
+    5,
+    8
+  ],
+  "same_geometry_full_wave_basis": true,
+  "independent_full_wave_resolve": false,
+  "coarse_grid": {
+    "theta_step_deg": 1,
+    "phi_step_deg": 10
+  },
+  "dense_evaluation_grid": {
+    "theta_step_deg": 0.5,
+    "phi_step_deg": 5
+  },
+  "budget_per_seed": 3000,
+  "selected_method": "DE + local",
+  "selected_seed": 5,
+  "selected_coarse_objective": 0.777712911894147,
+  "selected_dense_metrics": {
+    "active_modes": 3,
+    "main_disk_ripple_db": 5.231094424763477,
+    "outside_disk_db": -10.269324843231836,
+    "boresight_relative_db": -0.029411621488198255,
+    "peak_theta_deg": 11.0,
+    "peak_phi_deg": 175.0,
+    "main_cross_db": -12.421261803742025,
+    "returned_power_proxy": null,
+    "nonreturned_power_proxy": null
+  },
+  "source_reference": "intrinsic_modal",
+  "power_proxy_warning": "Use native AcceptedPower for intrinsic source settings."
+}

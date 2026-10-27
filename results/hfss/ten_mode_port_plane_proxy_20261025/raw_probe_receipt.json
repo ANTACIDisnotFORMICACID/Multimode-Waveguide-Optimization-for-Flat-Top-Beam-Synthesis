@@ -1,0 +1,112 @@
+{
+  "status": "GRIDS_EXPORTED_UNVERIFIED",
+  "project": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\waveguide_30ghz_portgrid_all_20261025.aedt",
+  "port_modes": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "plane_z_mm": -99.9,
+  "field_type": "3D_TOTAL_E_NOT_2D_PORT_EIGENFIELD",
+  "analysis_called": false,
+  "project_saved": false,
+  "fields": [
+    {
+      "port_mode": 1,
+      "field_file": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\port_field_export_20261025T174745\\total_E_port_mode_1.fld",
+      "file_bytes": 77346,
+      "field_header": [
+        "Grid Output Min: [-9mm -4.5mm -99.9mm] Max: [9mm 4.5mm -99.9mm] Grid Size: [1mm 0.5mm 0mm] Unit: \"mm\"",
+        "X, Y, Z, Complex Vector data \"Smooth(<Ex,Ey,Ez>)\""
+      ]
+    },
+    {
+      "port_mode": 2,
+      "field_file": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\port_field_export_20261025T174745\\total_E_port_mode_2.fld",
+      "file_bytes": 77391,
+      "field_header": [
+        "Grid Output Min: [-9mm -4.5mm -99.9mm] Max: [9mm 4.5mm -99.9mm] Grid Size: [1mm 0.5mm 0mm] Unit: \"mm\"",
+        "X, Y, Z, Complex Vector data \"Smooth(<Ex,Ey,Ez>)\""
+      ]
+    },
+    {
+      "port_mode": 3,
+      "field_file": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\port_field_export_20261025T174745\\total_E_port_mode_3.fld",
+      "file_bytes": 77403,
+      "field_header": [
+        "Grid Output Min: [-9mm -4.5mm -99.9mm] Max: [9mm 4.5mm -99.9mm] Grid Size: [1mm 0.5mm 0mm] Unit: \"mm\"",
+        "X, Y, Z, Complex Vector data \"Smooth(<Ex,Ey,Ez>)\""
+      ]
+    },
+    {
+      "port_mode": 4,
+      "field_file": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\port_field_export_20261025T174745\\total_E_port_mode_4.fld",
+      "file_bytes": 77355,
+      "field_header": [
+        "Grid Output Min: [-9mm -4.5mm -99.9mm] Max: [9mm 4.5mm -99.9mm] Grid Size: [1mm 0.5mm 0mm] Unit: \"mm\"",
+        "X, Y, Z, Complex Vector data \"Smooth(<Ex,Ey,Ez>)\""
+      ]
+    },
+    {
+      "port_mode": 5,
+      "field_file": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\port_field_export_20261025T174745\\total_E_port_mode_5.fld",
+      "file_bytes": 77742,
+      "field_header": [
+        "Grid Output Min: [-9mm -4.5mm -99.9mm] Max: [9mm 4.5mm -99.9mm] Grid Size: [1mm 0.5mm 0mm] Unit: \"mm\"",
+        "X, Y, Z, Complex Vector data \"Smooth(<Ex,Ey,Ez>)\""
+      ]
+    },
+    {
+      "port_mode": 6,
+      "field_file": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\port_field_export_20261025T174745\\total_E_port_mode_6.fld",
+      "file_bytes": 77395,
+      "field_header": [
+        "Grid Output Min: [-9mm -4.5mm -99.9mm] Max: [9mm 4.5mm -99.9mm] Grid Size: [1mm 0.5mm 0mm] Unit: \"mm\"",
+        "X, Y, Z, Complex Vector data \"Smooth(<Ex,Ey,Ez>)\""
+      ]
+    },
+    {
+      "port_mode": 7,
+      "field_file": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\port_field_export_20261025T174745\\total_E_port_mode_7.fld",
+      "file_bytes": 77376,
+      "field_header": [
+        "Grid Output Min: [-9mm -4.5mm -99.9mm] Max: [9mm 4.5mm -99.9mm] Grid Size: [1mm 0.5mm 0mm] Unit: \"mm\"",
+        "X, Y, Z, Complex Vector data \"Smooth(<Ex,Ey,Ez>)\""
+      ]
+    },
+    {
+      "port_mode": 8,
+      "field_file": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\port_field_export_20261025T174745\\total_E_port_mode_8.fld",
+      "file_bytes": 77407,
+      "field_header": [
+        "Grid Output Min: [-9mm -4.5mm -99.9mm] Max: [9mm 4.5mm -99.9mm] Grid Size: [1mm 0.5mm 0mm] Unit: \"mm\"",
+        "X, Y, Z, Complex Vector data \"Smooth(<Ex,Ey,Ez>)\""
+      ]
+    },
+    {
+      "port_mode": 9,
+      "field_file": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\port_field_export_20261025T174745\\total_E_port_mode_9.fld",
+      "file_bytes": 77391,
+      "field_header": [
+        "Grid Output Min: [-9mm -4.5mm -99.9mm] Max: [9mm 4.5mm -99.9mm] Grid Size: [1mm 0.5mm 0mm] Unit: \"mm\"",
+        "X, Y, Z, Complex Vector data \"Smooth(<Ex,Ey,Ez>)\""
+      ]
+    },
+    {
+      "port_mode": 10,
+      "field_file": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\port_field_export_20261025T174745\\total_E_port_mode_10.fld",
+      "file_bytes": 77484,
+      "field_header": [
+        "Grid Output Min: [-9mm -4.5mm -99.9mm] Max: [9mm 4.5mm -99.9mm] Grid Size: [1mm 0.5mm 0mm] Unit: \"mm\"",
+        "X, Y, Z, Complex Vector data \"Smooth(<Ex,Ey,Ez>)\""
+      ]
+    }
+  ]
+}

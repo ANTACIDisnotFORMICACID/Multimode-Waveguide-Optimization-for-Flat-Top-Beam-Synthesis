@@ -1,2 +1,2 @@
 Status,PeakDirectionDifferenceDeg,HPBWRelativeDifference,PatternRmseDb,GatePassed,Message
-BLOCKED_NOT_RUN,NaN,NaN,NaN,0,No HFSS status or pattern export was found.
+NATIVE_12MODE_SINGLE_MODE_ONLY,NaN,NaN,NaN,0,"The native 12-mode HFSS solve, complex-field export, and a TE10-candidate comparison exist; port eigenfield identity and the final optimized multimode comparison remain pending."

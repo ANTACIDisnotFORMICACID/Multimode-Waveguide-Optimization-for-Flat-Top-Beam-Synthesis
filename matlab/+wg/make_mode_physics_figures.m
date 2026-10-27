@@ -13,8 +13,10 @@ phiAxis = -180:4:180;
 mapCfg = cfg;
 mapCfg.grid.fftPadding = min(cfg.grid.fftPadding,4);
 
-fig = figure('Visible','off','Color','w','Position',[80 80 1800 760]);
-tiledlayout(2,5,'TileSpacing','compact','Padding','compact');
+fig = figure('Visible','off','Color','w','Position',[80 80 1600 1050]);
+columns = 4;
+rows = ceil(height(modes)/columns);
+tiledlayout(rows,columns,'TileSpacing','compact','Padding','compact');
 for modeIdx = 1:height(modes)
     field = wg.mode_fields(cfg,modes.Family(modeIdx),modes.m(modeIdx),modes.n(modeIdx));
     pattern = wg.farfield_fft(mapCfg,field,thetaGrid,phiGrid);
@@ -27,8 +29,8 @@ for modeIdx = 1:height(modes)
     clim([-40 0]);
     xticks([-180 -90 0 90 180]);
     yticks([0 30 60 90]);
-    if modeIdx > 5, xlabel('\phi (deg)'); end
-    if modeIdx == 1 || modeIdx == 6, ylabel('\theta (deg)'); end
+    if modeIdx > (rows-1)*columns, xlabel('\phi (deg)'); end
+    if mod(modeIdx-1,columns) == 0, ylabel('\theta (deg)'); end
     title(sprintf('%s   f_c=%.2f GHz',modes.Name(modeIdx),modes.CutoffGHz(modeIdx)));
 end
 colormap(turbo);

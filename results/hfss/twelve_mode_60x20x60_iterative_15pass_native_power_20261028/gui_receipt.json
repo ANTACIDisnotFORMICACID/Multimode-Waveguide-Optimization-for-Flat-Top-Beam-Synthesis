@@ -1,0 +1,11 @@
+{
+  "project_saved_by_script": false, 
+  "row_count": 2, 
+  "csv": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\gui_power_15pass_20261028T024540\\native_power_comparison.csv", 
+  "include_port_post_processing": false, 
+  "output": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\gui_power_15pass_20261028T024540", 
+  "status": "POWER_EXPORTED", 
+  "weights_csv": "D:\\homework\\\u7535\u78c1\u5b66\u5c0f\u8bba\u6587\\waveguide_farfield\\results\\hfss\\twelve_mode_60x20x60_three_mode_2d_intrinsic_20261027\\selected_weights.csv", 
+  "setup": "PowerCheck30GHz : LastAdaptive", 
+  "analysis_called": false
+}

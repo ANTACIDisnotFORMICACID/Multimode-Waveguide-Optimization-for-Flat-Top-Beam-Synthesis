@@ -1,0 +1,31 @@
+{
+  "port_modes": [
+    11,
+    12
+  ],
+  "cross_correlation_magnitude": [
+    [
+      0.48958536148292703,
+      0.7495466827076873
+    ],
+    [
+      0.9349149551937865,
+      0.5435131142597888
+    ]
+  ],
+  "cross_correlation_phase_deg": [
+    [
+      -1.2259492156949687,
+      179.8401109934644
+    ],
+    [
+      -0.35640556394921924,
+      -1.067747716644217
+    ]
+  ],
+  "subspace_principal_cosines": [
+    0.9999880435746258,
+    0.9999816261592238
+  ],
+  "interpretation": "Mode labels rotate within the near-cutoff pair; the two-dimensional field subspace remains nearly unchanged."
+}

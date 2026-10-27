@@ -8,7 +8,8 @@ end
 
 cfg.projectRoot = char(projectRoot);
 cfg.resultsDir = fullfile(cfg.projectRoot, 'results');
-cfg.c0 = 3.0e8;
+% Exact SI value matters here: TE02 and TE40 are 20.7542 MHz below 30 GHz.
+cfg.c0 = 299792458;
 cfg.mu0 = 4*pi*1e-7;
 cfg.eps0 = 1/(cfg.mu0*cfg.c0^2);
 cfg.frequencyHz = 30e9;

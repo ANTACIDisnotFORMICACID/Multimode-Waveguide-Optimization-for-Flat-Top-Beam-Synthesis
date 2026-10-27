@@ -1,0 +1,23 @@
+{
+  "status": "EXPLORATORY_FIXED_THREE_PORT_TRADEOFF",
+  "basis": "results\\hfss\\twelve_mode_60x20x60_full_azimuth_intrinsic_20261027\\complex_modal_basis.npz",
+  "source_reference": "intrinsic_modal",
+  "ports": [
+    1,
+    5,
+    8
+  ],
+  "outside_weights": [
+    0.0,
+    0.1,
+    0.3,
+    1.0,
+    3.0
+  ],
+  "seeds_per_weight": 3,
+  "maxiter": 40,
+  "coarse_grid": "1 deg theta x 10 deg phi",
+  "evaluation_grid": "0.5 deg theta x 5 deg phi",
+  "objective": "ripple_db/10 + weight*10*outside_linear + 2*cross_linear",
+  "global_optimality_claim": false
+}

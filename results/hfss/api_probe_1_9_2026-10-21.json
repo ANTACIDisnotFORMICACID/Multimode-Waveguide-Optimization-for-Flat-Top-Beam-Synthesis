@@ -1,0 +1,13 @@
+{
+  "aedt_version": "2025.2",
+  "python_version": "3.10.16",
+  "pyaedt_version": "1.9.0",
+  "environment": "normal_host",
+  "desktop_started": true,
+  "project_created": true,
+  "design_created": false,
+  "status": "INTERRUPTED_AFTER_NO_DESIGN_RESPONSE",
+  "observation": "No design receipt was written after more than one minute; AEDT process was no longer visible when checked.",
+  "solve_attempted": false,
+  "license_verified": false
+}

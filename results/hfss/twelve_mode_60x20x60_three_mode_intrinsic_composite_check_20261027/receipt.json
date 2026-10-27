@@ -1,0 +1,39 @@
+{
+  "status": "COMPOSITE_FIELD_MATCHED",
+  "analysis_called": false,
+  "project_saved": false,
+  "project": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\waveguide_30ghz_12mode_60x20x60_dense_probe.aedt",
+  "weights_csv": "D:\\homework\\\u7535\u78c1\u5b66\u5c0f\u8bba\u6587\\waveguide_farfield\\results\\hfss\\twelve_mode_60x20x60_three_mode_2d_intrinsic_20261027\\selected_weights.csv",
+  "basis": "D:\\homework\\\u7535\u78c1\u5b66\u5c0f\u8bba\u6587\\waveguide_farfield\\results\\hfss\\twelve_mode_60x20x60_full_azimuth_intrinsic_20261027\\complex_modal_basis.npz",
+  "include_port_post_processing": false,
+  "sample_count": 80,
+  "complex_relative_l2_error": 6.147152389793908e-16,
+  "source_magnitudes_w": [
+    0.6753698980388221,
+    0.0,
+    0.0,
+    0.0,
+    0.26356636675104894,
+    0.0,
+    0.0,
+    0.061063735210129005,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "source_phases_deg": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    15.553028985563747,
+    0.0,
+    0.0,
+    -11.009635705624962,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "status": "TWO_S_REFERENCES_EXPORTED", 
+  "setup": "PowerCheck30GHz : LastAdaptive", 
+  "analysis_called": false, 
+  "project_saved_by_script": false, 
+  "s_matrix_csv": {
+    "postprocessed_50ohm": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\gui_s_reference_15pass_20261028T030645\\postprocessed_50ohm\\s_matrix_30ghz.csv", 
+    "intrinsic_modal": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\gui_s_reference_15pass_20261028T030645\\intrinsic_modal\\s_matrix_30ghz.csv"
+  }, 
+  "output": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\gui_s_reference_15pass_20261028T030645"
+}

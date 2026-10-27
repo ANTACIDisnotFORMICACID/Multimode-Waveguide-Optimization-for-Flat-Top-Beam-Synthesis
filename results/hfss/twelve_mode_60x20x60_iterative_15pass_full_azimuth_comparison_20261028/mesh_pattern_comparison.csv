@@ -1,0 +1,3 @@
+case,baseline_main_disk_ripple_db,refined_main_disk_ripple_db,baseline_outside_disk_db,refined_outside_disk_db,baseline_peak_theta_deg,refined_peak_theta_deg,normalized_pattern_rmse_db_above_minus20,sample_count_above_minus20
+port 1,10.618623675818238,10.578895712900888,-14.180004425201695,-14.14117240275083,0.0,0.0,0.042727310495560354,4998
+ports 1+5+8 intrinsic optimum,5.2083716058176,5.221684931914058,-10.19818077471223,-10.163713681754789,11.5,11.5,0.066723458532553,7226

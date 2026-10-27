@@ -1,0 +1,25 @@
+{
+  "status": "HFSS_EMBEDDED_TWO_MODE_EH_SYNTHESIS",
+  "port_modes": [
+    1,
+    8
+  ],
+  "analytic_groups_by_beta": [
+    "TE10",
+    "TE30"
+  ],
+  "half_width_deg": 20,
+  "transition_deg": 20,
+  "two_plane_only": true,
+  "independent_full_wave_resolve": false,
+  "best": {
+    "Seed": 8,
+    "Objective": 0.8416262841013914,
+    "Ratio": 1.9632146028522566,
+    "PhaseDeg": -101.50886577720927,
+    "Evaluations": 1383,
+    "Converged": true
+  },
+  "objective_baseline": 1.5592537048217123,
+  "objective_optimum": 0.8416262841013914
+}

@@ -1,0 +1,2 @@
+ApertureWidthMm,ApertureHeightMm,FlareLengthMm,HalfAngleXDeg,HalfAngleYDeg,HalfWidthDeg,TransitionDeg,FeedModeCount,ActiveModeCount,Objective,FunctionEvaluations,MainRippleDb,MaxOutsideDb,MainCrossPolDb,PatternGatesPassed,SelectionStatus
+60,20,60,18.434948822922,4.76364169072618,20,20,12,6,0.176563472413337,1890,1.07221603719655,-9.41921281854223,-75.1770352204549,0,PARETO_ONLY_NO_GEOMETRY_PASSED

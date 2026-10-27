@@ -1,0 +1,13 @@
+{
+  "status": "RAW_EXPORT_VALIDATED",
+  "source_folder": "C:\\Users\\ASUS\\AppData\\Local\\Temp\\waveguide_farfield_hfss\\gui_export_20261028T025614",
+  "project": "waveguide_30ghz_12mode_60x20x60_power_refine_gui",
+  "s_matrix_entries": 144,
+  "frequency_hz": 30000000000.0,
+  "port_mode_count": 12,
+  "raw_mode_phi_cuts": 48,
+  "samples_per_cut": 181,
+  "raw_complex_samples": 8688,
+  "signed_complex_samples": 8664,
+  "analytic_mode_identified": false
+}
